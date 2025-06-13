@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <title>Desktop 29</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="sidebar_div">
+            <!-- This is the sidebar -->
+             <sidebar>
+                <button>Edit House</button>
+                <button>Add House</button>
+                <button>Add Room</button>
+                <button>My Home</button>
+            </sidebar>
+        </div>
+        <!-- This is the second part, that has the form -->
+        <div id="form_div">
+            <form>
+                <!-- Division for Name of House -->
+                <div>
+                    <label for="hse_name">Name of House</label>
+                    <input type="text" id="hse_name" name="Name">
+                </div>
+
+                <!-- Division for the House Location -->
+                <div>
+                    <label for="hse_location">Location</label>
+                    <input type="text" id="hse_location" name="Location">
+                </div>
+
+                <!-- Division for accepting image file -->
+                <div>
+                    <img id="file_preview" alt="nothing here yet">
+                    <input id="file_chosen" type=file accept=".jpg, .jpeg, .png" style="border:none">
+                    <small>.png, .jpeg .jpg only</small>
+                </div>
+
+                <!-- Division for showing the number of rooms -->
+                <!-- <div>
+                    <label>Number of Rooms</label>
+                    <input>
+                </div> -->
+
+                <!-- Division for description text area -->
+                <div>
+                    <label for="hse_description">Description</label>
+                    <textarea id="hse_description" name="Description"></textarea>
+                </div>
+
+                <!-- Division for add house button -->
+                <div>
+                    <button type="submit" id="btn_addHouse">Add house</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Link to the javascript file, should be last thing in body -->
+        <script src="desktop29.js"></script>
+    </body>
+</html>
