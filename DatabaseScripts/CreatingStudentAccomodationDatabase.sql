@@ -1,0 +1,1 @@
+create database db_webAppDev_student_Accomodation;
