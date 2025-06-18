@@ -17,7 +17,7 @@
         </div>
         <!-- This is the second part, that has the form -->
         <div id="form_div">
-            <form>
+            <form method="POST" enctype="multipart/form-data" action="registerHouse.php">
                 <!-- Division for Name of House -->
                 <div>
                     <label for="hse_name">Name of House</label>
@@ -33,7 +33,7 @@
                 <!-- Division for accepting image file -->
                 <div>
                     <img id="file_preview" alt="nothing here yet">
-                    <input id="file_chosen" type=file accept=".jpg, .jpeg, .png" style="border:none">
+                    <input id="file_chosen" name="file_chosen" type=file accept=".jpg, .jpeg, .png" style="border:none">
                     <small>.png, .jpeg .jpg only</small>
                 </div>
 
