@@ -33,8 +33,8 @@
                 <!-- Division for accepting image file -->
                 <div>
                     <img id="file_preview" alt="nothing here yet">
-                    <input id="file_chosen" name="file_chosen" type=file accept=".jpg, .jpeg, .png" style="border:none">
-                    <small>.png, .jpeg .jpg only</small>
+                    <input id="file_chosen" name="file_chosen" type=file accept=".png" style="border:none">
+                    <small>.png only</small>
                 </div>
 
                 <!-- Division for showing the number of rooms -->

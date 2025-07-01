@@ -1,27 +1,28 @@
 <?php
 require "../connection.php";
+session_start();
 
-/*echo "<pr>";
-print_r($_POST);
-print_r($_FILES);
-echo "</pr>";*/
+$landlordId = $_SESSION["landlordId"];
+// $landlordId = 3;
+$houseName = $_POST["Name"];
+$houseLocation =$_POST["Location"];
+$houseDescription=$_POST["Description"];
 
 if(isset($_FILES["file_chosen"]) && ($_FILES["file_chosen"]["error"])==0){
     $imgData = file_get_contents($_FILES["file_chosen"]["tmp_name"]);
-    $imgData = $conn->real_escape_string($imgData);
 
-    $sql = "insert into photos(photo) values (?);";
+    $sql = "insert into house(houseName,houseLocation,houseDescription,landlordId,housePhoto) values (?,?,?,?,?)";
     $pstmt = $conn->prepare($sql);
-    $pstmt->bind_param("b",$imgData);
-    $pstmt->send_long_data(0,$imgData);
+    $pstmt->bind_param("sssib",$houseName, $houseLocation, $houseDescription, $landlordId, $imgData);
+    $pstmt->send_long_data(4,$imgData);
 
     if($pstmt->execute()){
-        echo "Where's the cigars boys!";
+        echo "Successful send to database";
         header("Location: ../DesktopStudentLogin/studentlogin.html");
         exit;
     }
     else{
-        echo "We are nearing Valhalla";
+        echo "Unsuccessful send to database";
     }
 }
 else{
