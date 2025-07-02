@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require "../CampusNest_WebApplicationDevelopment_BICS2.1D/connection.php";
+require "../connection.php";
 
 $houseId = 1;
 
