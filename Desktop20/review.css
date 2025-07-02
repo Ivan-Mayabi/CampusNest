@@ -1,0 +1,164 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,body {
+  font-family: "Segoe UI", sans-serif;
+  height: 100%;
+  background-color: #fff8e7;
+}
+
+
+
+.page-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  min-height:100vh;
+  width: 100%;
+}
+
+
+/* Sidebar styles */
+.sidebar {
+  width: 250px;
+  height:auto;
+  background-color: #b3395b;
+  padding-top: 20px;
+  min-height:100vh;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.sidebar ul {
+  list-style: none;
+  padding:0;
+}
+.sidebar ul li {
+  margin: 20px 0;
+}
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 12px 20px;
+  transition: background-color 0.3s ease;
+}
+.sidebar ul li.active a,
+.sidebar ul li a:hover {
+  background-color: #e37c74;
+  border-radius: 8px;
+}
+
+/* Container styles */
+.container {
+  flex-grow: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* Form styles */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 600px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.form-header h1 {
+  font-size: 24px;
+  color: #333;
+}
+.back {
+  width: 140px;
+  height: 100px;
+  text-align: right;
+  
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+input, select, textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: white;
+}
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Submit button */
+button[type="submit"] {
+  padding: 12px;
+  background-color: #c0395f;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background-color: #a8324a;
+}
+.star-rating {
+  direction: flex;
+  flex-direction: row-reverse;
+  gap: 5px;
+}
+
+.star-rating input[type="radio"] {
+  display: none;
+}
+
+.star-rating label {
+  font-size: 1.5rem;
+  color: gray;
+  cursor: pointer;
+}
+
+.star-rating input[type="radio"]:checked ~ label {
+  color: gold;
+}
+
+table {
+            border-collapse: collapse;
+            border: 1px solid white;
+            width: 80%;
+            margin: 20px auto;
+            border-radius: 10px}
+      th, td {
+            border: 1px solid white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        th {
+            background-color:#c0395f ;
+        }
+
+.other-reviews h1 {
+    padding-top: 40px;
+  font-size: 24px;
+  color: #333;
+}
