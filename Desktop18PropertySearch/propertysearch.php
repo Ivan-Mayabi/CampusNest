@@ -4,7 +4,7 @@ require_once "../connection.php"; // This file should have your DB connection co
 if (isset($_POST['query'])) {
     $search = mysqli_real_escape_string($conn, $_POST['query']);
 
-    $sql = "SELECT * FROM properties WHERE name LIKE '%$search%' OR location LIKE '%$search%'";
+    $sql = "SELECT * FROM house WHERE name LIKE '%$search%' OR location LIKE '%$search%'";
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
