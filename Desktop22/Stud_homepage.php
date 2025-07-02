@@ -1,10 +1,9 @@
 <?php
-//Temp fix
-// session_start();
-// if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'Student') {
-//     header("Location: login.html");
-//     exit;
-// }
+session_start();
+if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'Student') {
+    header("Location: login.html");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>

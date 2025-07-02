@@ -17,6 +17,7 @@ if ($result->num_rows === 1) {
     // Verify password
     if (password_verify($password, $user['password'])) {
         echo "✅ Login successful. Welcome, " . htmlspecialchars($user['full_name']) . "!";
+        $_SESSION["useremail"]= $_POST["email"];
     } else {
         echo "❌ Incorrect password.";
     }
