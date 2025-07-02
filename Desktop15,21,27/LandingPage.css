@@ -1,0 +1,78 @@
+body {
+    background-color: #f9a8e8;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    padding-top: 60px;
+}
+
+/*
+.logo .box {
+    width: 180px;
+    height: 180px;
+    background-color: palegoldenrod;
+    margin: 0 auto;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #000;
+} 
+*/
+
+.logo .box img {
+    width: 210px;
+    height: 200px;
+    border-radius: 150px;
+}
+
+.description {
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #78053f;
+    margin-top: 10px;
+}
+
+.buttons {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    gap: 70px;
+    flex-wrap: wrap;
+}
+
+.left-buttons, .right-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+button {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 1px solid rgb(188, 16, 145);
+    background-color: white;
+    cursor: pointer;
+    font-weight: 400;
+    color: rgb(188, 16, 145);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+    background-color: rgb(188, 16, 145);
+    color: white;
+}
+
+.footer {
+    position: bottom;
+    bottom: 0;
+    width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #78053f;
+    text-align: center;
+    padding: 10px 0;
+}

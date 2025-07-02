@@ -1,0 +1,130 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    background-color: #d317a8;
+    width: 250px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.sidebar h2 {
+    color: whitesmoke;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 20px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: whitesmoke;
+    font-weight: bold;
+}
+
+.sidebar ul li a:hover {
+    color: #78053f;
+}
+
+.main-content {
+    flex: 1;
+    background-color: whitesmoke;
+    padding: 40px;
+    position: relative;
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    text-align: center;
+}
+
+.back-button .box {
+    width: 80px;
+    height: 80px;
+    background-color: whitesmoke;
+    border: 1px solid #d317a8;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.back-button .box img {
+    width: 100px;
+    height: 100px;
+}
+
+/*
+.back-button .back-text {
+    font-weight: bold;
+    color: #d317a8;
+    margin-top: 5px;
+}
+*/
+
+form {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+}
+
+label {
+    font-weight: normal;
+    text-align: left;
+    color: #333;
+}
+
+input[type="text"],
+input[type="number"] {
+    padding: 8px;
+    border: 1px solid #d317a8;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+}
+
+textarea {
+    padding: 8px;
+    border: 1px solid #d317a8;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+    resize: none;
+}
+
+button {
+    margin: 0 auto;
+    padding: 10px 20px;
+    background-color: #d317a8;
+    color: white;
+    border: 1px solid #d317a8;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #a50f7c;
+}
