@@ -1,6 +1,10 @@
 <?php
 require 'connection.php';
 
+// Temporary Linking
+header("Location: login.html");
+end;
+
 $full_name = $_POST['full_name'] ?? '';
 $email = $_POST['email'] ?? '';
 $password = $_POST['password'] ?? '';
