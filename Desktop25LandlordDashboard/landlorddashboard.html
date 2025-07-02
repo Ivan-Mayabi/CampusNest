@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Landlord Dashboard - Campus Nest</title>
+  <link rel="stylesheet" href="landlorddashboard.css" />
+</head>
+<body>
+<div class="page-wrapper">
+  <div class="sidebar">
+    <div class="logo-container">
+      <img src="images/Campusnestlogo.jpg"  width="140" />
+    </div>
+    <ul>
+      <li class="active"><a href="#">REQUESTS</a></li>
+      <li><a href="#">MY HOME</a></li>
+      <li><a href="logout.php">SIGN OUT</a></li>
+    </ul>
+  </div>
+
+  <div class="container">
+      <form  class="filter-wrapper">
+    <input type="text" id="searchInput" placeholder="Filter by Location/Name" />
+           <button id="searchBtn" class="search-icon"> GO </button>
+    <div id="studentList"></div>
+          </form>
+  </div>
+</div>
+
+
+<script src="landlorddashboard.js"></script>
+</body>
+</html>
