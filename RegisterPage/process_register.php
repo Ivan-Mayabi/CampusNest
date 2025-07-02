@@ -1,9 +1,5 @@
 <?php
-require 'connection.php';
-
-// Temporary Linking
-header("Location: login.html");
-end;
+require '../connection.php';
 
 $full_name = $_POST['full_name'] ?? '';
 $email = $_POST['email'] ?? '';
@@ -38,6 +34,8 @@ $stmt->bind_param("sssssss", $full_name, $email, $hashed_password, $gender, $dob
 
 if ($stmt->execute()) {
     echo "✅ Registered Successfully!";
+    header("Location: ../Login/studentlogin.html");
+    end;
     echo '<br><a href="login.html">Login here</a>';
 
 

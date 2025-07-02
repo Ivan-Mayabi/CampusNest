@@ -1,13 +1,7 @@
-/* Body setup */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  html, body {
+ html, body {
     height: 100%;
-  }
-  body {
+}
+body {
     font-family: "Segoe UI", sans-serif;
     background-color: floralwhite;
     display: flex;
@@ -16,7 +10,7 @@
     align-items: flex-start;
     /* padding: 20px; /*...Disabled for the sidebar to hug the side of the page */
     gap: 30px;
-  }
+}
   
   /* Left side image
   .side-image {
@@ -43,38 +37,38 @@
   }
    */
   /* Campus Nest heading */
-  h1 {
+h1 {
     font-size: 24px;
     text-align: center;
     margin-bottom: 20px;
     color: #c0395f;
-  }
+}
   
   /* Form groups */
-  .form-group {
-    margin-bottom: 15px;
-  }
-  label,a {
-    display: block;
-    text-align: left;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  input,
-  select,textarea {  /*Added text area to this mix*/
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: small;
-  }
- 
-  small {
-    display: block;
-    margin-top: 5px;
-    color: #555;
-  }
+.form-group {
+  margin-bottom: 15px;
+}
+label,a {
+  display: block;
+  text-align: left;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+input,
+select,textarea {  /*Added text area to this mix*/
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: small;
+}
+
+small {
+  display: block;
+  margin-top: 5px;
+  color: #555;
+}
   
   /* Error message */
   /* .error {
@@ -85,9 +79,9 @@
   } */
   
   /* Button */
-  button {
-    width: 100%;
-    padding: 10px;
+button {
+  width: 100%;
+  padding: 10px;
     background-color: #c0395f;
     border: none;
     color: white;
@@ -104,66 +98,66 @@
     background-color: #e7a57b;
   }
 
-/* From hear on out, the CSS differs from what is on the base file */
-/* sidebar occupy the entire height of the screen and certain width */
-html{
+  /* From hear on out, the CSS differs from what is on the base file */
+  /* sidebar occupy the entire height of the screen and certain width */
+  html{
   /* Variables */
   --sidebar-width:20vw;
 
   /* Disable scrolling */
   overflow-x:hidden;
-}
+  }
 
-/* Make the sidebar be a certain width, colour and occupy full height */
-#sidebar_div{
+  /* Make the sidebar be a certain width, colour and occupy full height */
+  #sidebar_div{
   height:100vh;
   width:var(--sidebar-width);
   background-color: #c0395f; /* Alter the background color */
-}
+  }
 
-/* Alter the alignment of the buttons in the sidebar:column wise */
-sidebar{
+  /* Alter the alignment of the buttons in the sidebar:column wise */
+  sidebar{
   display:flex;
   flex-direction:column;
-}
+  }
 
-/* Reduce button size in the sidebar, add margin at the bottom and remove spacing at end and beginning */
-sidebar p{
+  /* Reduce button size in the sidebar, add margin at the bottom and remove spacing at end and beginning */
+  sidebar p{
   width:var(--sidebar-width);
   box-sizing:content-box;
   margin-bottom:12px;
   padding:0px;
   font-size:16px;
-}
+  }
 
-/* Change the position of the input for files */
-/* input[type="file"]{
+  /* Change the position of the input for files */
+  /* input[type="file"]{
   position:absolute;
   top:20vh;
   right:-25vw;
   border:none;Make the border nothing */
-/* } */
+  /* } */
 
-/* input[type="file"]+small{
+  /* input[type="file"]+small{
   position:absolute;
   top:24vh;
   right:0vw;
   font-style:italic;
-} */
+  } */
 
-/* Change the form to start a bit lower */
-#form_div{
+  /* Change the form to start a bit lower */
+  #form_div{
   margin-top:5vh;
   /* position:relative;Place the file input relative to this */
-}
+  }
 
-/* Alter the input of the forms to be a bit wider */
-/* #form_div input{
+  /* Alter the input of the forms to be a bit wider */
+  /* #form_div input{
   width:35vw;
-} */
+  } */
 
-/* Alter the borders of the image */
-/* #form_div img{
+  /* Alter the borders of the image */
+  /* #form_div img{
   border:black 1px solid;
   border-radius:6px;
   background-color:white; */
@@ -174,16 +168,16 @@ sidebar p{
   /* Alter the size */
   /* width:20vw;
   height:30vh;
-} */
+  } */
 
-/* Alter the size of the text area + font type*/
-/* #form-div textarea{
+  /* Alter the size of the text area + font type*/
+  /* #form-div textarea{
   width:60vw;
   height:35vh;
   font-family:Arial, Helvetica, sans-serif;
-} */
+  } */
 
-/*Altering anything that takes in data from the database.*/
+  /*Altering anything that takes in data from the database.*/
 .hse_info{
   font-weight:500;
   font-family:Arial, Helvetica, sans-serif;
@@ -238,6 +232,10 @@ p.hse_info{
   display:flex;
   flex-direction:row;
   width:780px;
+}
+
+#rooms_available #rooms a{
+  text-decoration:none;
 }
 
 

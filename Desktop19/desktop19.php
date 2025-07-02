@@ -130,6 +130,7 @@ $resultSet1 = $pstmt->get_result();
                     while($row = $resultSet1->fetch_assoc()){
                         $roomBase64 = base64_encode($row["roomPhoto"]);
                         echo 
+                        "<a href=''>".
                         "<div id='rooms' style='margin-bottom:3vh'>".
                             "<div id='room_image' style='margin-right:30px'>".
                                 "<img src='data:image/jpeg;base64," .$roomBase64."'alt='i will put one' width='100px' height='100px'>".
@@ -144,14 +145,15 @@ $resultSet1 = $pstmt->get_result();
                                 "<label style='display:inline'>RoomAvailability:</label>".
                                 "<p style='display:inline'>".htmlspecialchars($row['roomAvailability'])."</p>".
                             "</div>".
-                        "</div>";
+                        "</div>"."</a>";
+
                     }
                 ?>
             </div>
 
            <!-- Division for the reviews -->
             <div>
-                <a href="">Leave review</a>
+                <a href="../review_deskptop20/review.php">Leave review</a>
             </div>
 
         </div>

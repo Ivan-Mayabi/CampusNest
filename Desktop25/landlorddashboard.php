@@ -1,3 +1,4 @@
+<?php
 $db = new PDO('mysql:host=localhost;dbname=campus_nest;charset=utf8', 'root', ''); // Update credentials
 $action = $_GET['action'] ?? '';
 

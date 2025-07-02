@@ -20,6 +20,13 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'Student') {
       background-color: #fff0f3;
     }
 
+    a{
+      text-decoration:none;
+    }
+    a:hover{
+      transform:translate(0,-10);
+    }
+
     .sidebar {
       background-color: #f2f2f2;
       padding: 30px 20px;
@@ -124,7 +131,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'Student') {
   <div class="main-content">
     <h2>My Homes</h2>
 
-    <div class="property-card">
+    <a href="Desktop19/desktop19.php"><div class="property-card">
       <img src="./Room1.jpg" alt="Home Image">
       <div class="property-info">
         <h4>Booked House 1</h4>
@@ -133,7 +140,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'Student') {
       <div class="property-status status-approved">
         Approved
       </div>
-    </div>
+    </div></a>
 
     <div class="property-card">
       <img src="./Room2.jpg" alt="Home Image">
