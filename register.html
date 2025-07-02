@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Registration</title>
+    <link rel="stylesheet" href="register.css" />
+</head>
+<body>
+    <div class="container">
+        <h2>Registration</h2>
+        <h3>Join us today!</h3>
+        <form action="process_register.php" method="POST" id="registerForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="full_name">Full Name</label>
+                <input type="text" id="full_name" name="full_name" required />
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required />
+            </div>
+            <div class="form-group">
+                <label for="togglePassword">Show Password</label>
+                <input type="checkbox" id="togglePassword" />
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="user_role">Role</label>
+                <select id="user_role" name="user_role" required>
+                    <option value="">Select Role</option>
+                    <option value="Student">Student</option>
+                    <option value="Landlord">Landlord</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob" required />
+            </div>
+            <div class="form-group">
+                <label for="profile_image">Upload Profile Image</label>
+                <input type="file" id="profile_image" name="profile_image" accept="image/*" required />
+            </div>
+            <button type="submit" class="form-button">Register</button>
+        </form>
+        <div class="form-footer">
+            Already registered? <a href="./login.html">Login here</a>
+        </div>
+    </div>
+
+    <script>
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+
+        togglePassword.addEventListener('change', function () {
+            password.type = this.checked ? 'text' : 'password';
+        });
+    </script>
+</body>
+</html>
