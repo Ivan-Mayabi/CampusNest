@@ -1,21 +1,34 @@
 <?php
-require_once "../connection.php"; // This file should have your DB connection code
+require_once "../connection.php"; // adjust path if needed
 
 if (isset($_POST['query'])) {
     $search = mysqli_real_escape_string($conn, $_POST['query']);
 
-    $sql = "SELECT * FROM house WHERE name LIKE '%$search%' OR location LIKE '%$search%'";
+    $sql = "SELECT * FROM house WHERE HouseName LIKE '%$search%'
+            OR HouseLocation LIKE '%$search%'
+            OR HouseDescription LIKE '%$search%'";
+
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
         while ($property = mysqli_fetch_assoc($result)) {
+
+            // handle image blob (only if you're storing base64 or file paths – for now we skip it if NULL)
+            $imgSrc = '';
+            if (!empty($property['housePhoto'])) {
+                $imgData = base64_encode($property['housePhoto']);
+                $imgSrc = 'data:image/jpeg;base64,' . $imgData;
+            } else {
+                $imgSrc = 'images/default.jpg'; // fallback image if no photo
+            }
+
             echo '<div class="property-card">
-                    <img src="' . htmlspecialchars($property['image_url']) . '" alt="Property Image" />
+                    <img src="' . $imgSrc . '" alt="Property Image" />
                     <div class="property-info">
-                        <h3>' . htmlspecialchars($property['name']) . '</h3>
+                        <h3>' . htmlspecialchars($property['HouseName']) . '</h3>
                         <ul>
-                            <li><strong>Location:</strong> ' . htmlspecialchars($property['location']) . '</li>
-                            <li><strong>Description:</strong> ' . htmlspecialchars($property['description']) . '</li>
+                            <li><strong>Location:</strong> ' . htmlspecialchars($property['HouseLocation']) . '</li>
+                            <li><strong>Description:</strong> ' . htmlspecialchars($property['HouseDescription']) . '</li>
                         </ul>
                     </div>
                 </div>';

@@ -46,18 +46,25 @@
             }
 
             const xhr = new XMLHttpRequest();
-            xhr.open("POST", "search_properties.php", true);
+            xhr.open("POST", "propertysearch.php", true);
             xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhr.onload = function () {
                 if (xhr.status === 200) {
                     resultsDiv.innerHTML = xhr.responseText;
+                } else {
+                    resultsDiv.innerHTML = "Server Error!";
                 }
             };
             xhr.send("query=" + encodeURIComponent(query));
         }
 
         searchInput.addEventListener("keyup", searchProperties);
-        searchBtn.addEventListener("click", searchProperties);
+
+        // ✅ Prevent form submission reload
+        searchBtn.addEventListener("click", function(e) {
+            e.preventDefault();
+            searchProperties();
+        });
     </script>
 </body>
 </html>
