@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Search Properties - Campus Nest</title>
+    <link rel="stylesheet" href="PropertySearch.css" />
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="sidebar">
+            <div class="logo-container">
+                <img src="images/Campusnestlogo.jpg" width="140"/>
+            </div>
+
+            <ul>
+                <li class="active"><a href="#">SEARCH</a></li>
+                <li><a href="#">MY HOMES</a></li>
+                <li><a href="#">SIGN OUT</a></li>
+            </ul>
+        </div>
+
+        <div class="container">
+          <form id="searchForm" method="GET" action="propertysearch.php" class="search-bar">
+            <div class="search-wrapper">
+                <input type="text" id="searchInput" placeholder="Search for a property here..." />
+                <button id="searchBtn" class="search-icon"> 🔍 </button>
+            </div>
+            </form>
+
+            <!-- Search results will be shown here -->
+            <div id="results"></div>
+        </div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById("searchInput");
+        const resultsDiv = document.getElementById("results");
+        const searchBtn = document.getElementById("searchBtn");
+
+        function searchProperties() {
+            const query = searchInput.value.trim();
+            if (query === "") {
+                resultsDiv.innerHTML = "";
+                return;
+            }
+
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "search_properties.php", true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    resultsDiv.innerHTML = xhr.responseText;
+                }
+            };
+            xhr.send("query=" + encodeURIComponent(query));
+        }
+
+        searchInput.addEventListener("keyup", searchProperties);
+        searchBtn.addEventListener("click", searchProperties);
+    </script>
+</body>
+</html>
