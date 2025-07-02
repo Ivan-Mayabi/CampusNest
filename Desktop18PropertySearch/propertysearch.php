@@ -1,5 +1,5 @@
 <?php
-require_once "connection.php"; // This file should have your DB connection code
+require_once "../connection.php"; // This file should have your DB connection code
 
 if (isset($_POST['query'])) {
     $search = mysqli_real_escape_string($conn, $_POST['query']);
