@@ -8,6 +8,7 @@ $errorMessage = "";
 
 // $student_id=$_SESSION['student_id'] ?? null ;
 $student_id=1;
+$house_id=1;
 
 //Only insert if the form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -16,8 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     if (!empty($review_rating) && !empty($comment_description)) {
-        $sql = "INSERT INTO review ( StudentID, ReviewRating, CommentDescription)
-                VALUES ( '$student_id', '$review_rating', '$comment_description')";
+        $sql = "INSERT INTO review ( StudentID, HouseID, ReviewRating, CommentDescription)
+                VALUES ( '$student_id', '$house_id', '$review_rating', '$comment_description')";
 
         if (mysqli_query($conn, $sql)) {
             $successMessage = "Review posted successfully!";
@@ -94,7 +95,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$query = "SELECT StudentID, ReviewRating, CommentDescription, CommentTime FROM review";
+$query = "SELECT StudentID, HouseID, ReviewRating, CommentDescription, CommentTime FROM review";
 $result = mysqli_query($conn, $query);  
 // print_r($result);
 
@@ -112,6 +113,7 @@ if (!$result) {
     <table>
     <tr>
         <th>Student ID</th>
+        <th>House ID</th>
         <th>Review Rating</th>
         <th>Comment Description</th>
         <th>Comment Time</th>
@@ -123,6 +125,7 @@ if (!$result) {
     <?php while ($row = mysqli_fetch_assoc($result)): ?>
         <tr>
             <td><?php echo htmlspecialchars($row['StudentID']); ?></td>
+            <td><?php echo htmlspecialchars($row['HouseID']); ?></td>
             <td><?php echo htmlspecialchars($row['ReviewRating']); ?></td>
             <td><?php echo htmlspecialchars($row['CommentDescription']); ?></td>
             <td><?php echo htmlspecialchars($row['CommentTime']); ?></td>
@@ -149,4 +152,3 @@ mysqli_close($conn);
 
 </body>
 </html>
-
