@@ -10,7 +10,7 @@
     <div class="container">
         <h2>Registration</h2>
         <h3>Join us today!</h3>
-        <form action="process_register.php" method="POST" id="registerForm" enctype="multipart/form-data">
+        <form action="process_register.php" method="POST" id="registerForm">
             <div class="form-group">
                 <label for="first_name">First Name</label>
                 <input type="text" id="first_name" name="first_name" required />
@@ -19,33 +19,33 @@
                 <label for="last_name">Last Name</label>
                 <input type="text" id="last_name" name="last_name" required />
             </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="text" id="phone" name="phone" required />
+            </div>
+
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" required />
             </div>
+
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required />
             </div>
+
             <div class="form-group">
                 <label for="togglePassword">Show Password</label>
                 <input type="checkbox" id="togglePassword" />
             </div>
-            <div class="form-group">
-                <label for="gender">Gender</label>
-                <select id="gender" name="gender" required>
-                    <option value="">Select Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
+
             <div class="form-group">
                 <label for="user_role">Role</label>
                 <select id="user_role" name="user_role" required>
                     <option value="">Select Role</option>
-                    <option value="Student">Student</option>
-                    <option value="Landlord">Landlord</option>
+                    <option value="R002">Student</option>
+                    <option value="R001">Landlord</option>
                 </select>
             <!-- </div>
             <div class="form-group">
@@ -58,6 +58,7 @@
             </div> -->
             <button type="submit" class="form-button">Register</button>
         </form>
+
         <div class="form-footer">
             Already registered? <a href="../Login/studentlogin.html">Login here</a>
         </div>
