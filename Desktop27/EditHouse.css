@@ -128,3 +128,12 @@ button {
 button:hover {
     background-color: #a50f7c;
 }
+
+/*button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+button:active {
+    background-color: #78053f;
+}
+*/    

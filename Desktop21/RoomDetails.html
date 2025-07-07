@@ -15,7 +15,7 @@
 
         <div class ="main-content">
             <div class ="back-button">
-                <a href="LandingPage.html"> <!-- Put the right desktop here -->
+                <a href="______________"> <!-- Put the right desktop here -->
                     <div class ="box">
                         <div class ="icon">
                             <img src="back.png" alt="Back Icon">
@@ -25,20 +25,24 @@
                 </a> <!--  Might want to add <p class= "back-text">BACK</p> after the </a> tag  -->    
             </div>
             
-            <form>
+            <form action ="RoomDetails.php" method ="POST" enctype ="multipart/form-data">
                 <label for ="name">name</label>
                 <input type="text" id="name" name="name" placeholder="Enter your name" required>
 
                 <label for ="price">price</label>
-                <input type="number" id="price" name="price" placeholder="Enter your desired price range" required>
+                <input type="number" id="price" name="price" placeholder="Enter your desired price range" min= "1" required>
 
                 <label for ="description">description</label>
                 <textarea id="description" name="description" rows="6" placeholder="Enter a description of the room"></textarea>
 
+                <label for ="photo">Room Photo</label>
+                <input type="file" id="photo" name="photo" accept="image/*">
+                
                 <div class= "button-group">
                     <button type= "reset" class= "reset-button">Reset</button>"
                     <button type= "submit" class= "submit-button">Submit</button>
                 </div>
+                
             </form>
         </div>
     </div>
