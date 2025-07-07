@@ -153,7 +153,9 @@ $resultSet1 = $pstmt->get_result();
 
            <!-- Division for the reviews -->
             <div>
-                <a href="../review_deskptop20/review.php">Leave review</a>
+                <?php
+                    echo '<a style="color:inherit;text-decoration:none" href="../Desktop20/review.php?houseid='.$houseId.'">Leave review</a>'
+                ?>
             </div>
 
         </div>
