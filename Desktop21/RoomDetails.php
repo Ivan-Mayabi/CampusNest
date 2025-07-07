@@ -3,18 +3,17 @@ session_start();
 include('connection.php');
 
 // Check if user is logged in
-if (!isset($_SESSION['user_id'])) {
-    header("Location: ________");   // Redirect to login page if not logged in. Check path
+if (!isset($_SESSION['useremail'])) {
+    header("Location: ../Desktop19/desktop19.php");
     exit;
 }
 
-$userID = $_SESSION['user_id'];
+$userEmail = $_SESSION['useremail'];
 
-// Ensure roomid is passed
+// Check if roomid is passed
 if (!isset($_GET['roomid'])) {
     die("No room ID specified.");
 }
-
 $roomID = intval($_GET['roomid']);
 
 // Handling booking POST
@@ -22,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['book'])) {
     $update = mysqli_query($conn, "UPDATE room SET RoomAvailability = 0 WHERE roomid = $roomID AND RoomAvailability = 1");
 
     if ($update && mysqli_affected_rows($conn) > 0) {
-        echo "<script>alert('Room booked successfully'); window.location.href='_________';</script>"; // Redirect to MyHome page after booking. Put right path
+        echo "<script>alert('Room booked successfully'); window.location.href='Stud_homepage.php';</script>";  //check path
         exit;
     } else {
         echo "<script>alert('Room is already booked'); window.history.back();</script>";
@@ -45,8 +44,8 @@ if (!$room) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Room Details</title>
-    <link rel="stylesheet" href="Desktop21/RoomDetails.css"> <!-- Ensure correct css path -->
-    <img src="Desktop21/logo.png" alt="Logo" class="logo"> <!-- Ensure correct logo path -->
+    <link rel="stylesheet" href="RoomDetails.css">
+    <img src="Campusnestlogo.jpg" alt="Logo" class="logo"> 
 </head>
 
 <body>
@@ -57,10 +56,10 @@ if (!$room) {
 
         <div class ="main-content">
             <div class = "back-button">
-                <a href = "__________"> <!-- Replace with correct path -->
+                <a href = "../Desktop19/desktop19.html">
                     <div class="box">  
                         <div class="icon">
-                            <img src="Desktop21/left-arrow.png" alt="Back">  <!-- Replace with correct path -->
+                            <img src="back.png" alt="Back">
                         </div>
                     </div>
                 </a>   
@@ -72,12 +71,21 @@ if (!$room) {
                 <p><strong>Description:</strong> <?php echo nl2br(htmlspecialchars($room['RoomAvailability'] ? "Available" : "Booked")); ?></p>
 
                 <?php if (!empty($room['roomPhoto'])): ?>
-                    <img src= "data:image/jpeg;base64,<?php echo base64_encode($room['roomPhoto']); ?>" alt="Room Photo" style="max-width: 100%;">
+                    <img src= "data:image/jpeg;base64,<?php echo base64_encode($room['roomPhoto']); ?>" 
+                        alt="Room Photo" style="max-width: 100%; height: auto;">
                 <?php endif; ?> 
             </div>
 
-        </div>  
-    </div>
+            <?php if ($room['RoomAvailability']): ?>
+                <form method="POST" class="book-form">
+                    <button type="submit" name="book">Book</button>
+                </form>
+            <?php else: ?>
+                <p style = "color: red; font-weight:bold;">This room is already booked</p>   
+            <?php endif; ?> 
 
+        </div>  
+
+    </div>
 </body>    
 </html>
