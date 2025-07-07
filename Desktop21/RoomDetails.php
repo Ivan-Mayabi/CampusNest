@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['book'])) {
     $update = mysqli_query($conn, "UPDATE room SET RoomAvailability = 0 WHERE roomid = $roomID AND RoomAvailability = 1");
 
     if ($update && mysqli_affected_rows($conn) > 0) {
-        echo "<script>alert('Room booked successfully'); window.location.href='Stud_homepage.php';</script>";  //check path
+        echo "<script>alert('Room booked successfully'); window.location.href='../Desktop22/Stud_homepage.php';</script>";
         exit;
     } else {
         echo "<script>alert('Room is already booked'); window.history.back();</script>";
