@@ -50,11 +50,11 @@ $resultSet1 = $pstmt->get_result();
 
 <html>
     <head>
-        <title>Desktop 29</title>
+        <title>Desktop 19</title>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div id="sidebar_div">
+        <div id="sidebar_div" style="position:fixed;top:0px;left:0px;width:250px">
             <!-- This is the sidebar -->
              <sidebar>
                 <div id="first_div_sidebar">
@@ -76,7 +76,7 @@ $resultSet1 = $pstmt->get_result();
         </div>
         <!-- This is the second part, that has the form -->
          
-        <div id="main_div">
+        <div id="main_div" style="position:fixed;top:0px;left:250px">
             <div id="form_div">
                 <!-- Division for the back link -->
                 <!-- <div>
@@ -130,7 +130,7 @@ $resultSet1 = $pstmt->get_result();
                     while($row = $resultSet1->fetch_assoc()){
                         $roomBase64 = base64_encode($row["roomPhoto"]);
                         echo 
-                        "<a href='../Desktop21/RoomDetails.html?roomid=".$row["roomid"]."' style='text-decoration:none;color:inherit'>".
+                        "<a href='../Desktop21/RoomDetails.php?roomid=".$row["roomid"]."' style='text-decoration:none;color:inherit'>".
                         "<div id='rooms' style='margin-bottom:3vh'>".
                             "<div id='room_image' style='margin-right:30px'>".
                                 "<img src='data:image/jpeg;base64," .$roomBase64."'alt='i will put one' width='100px' height='100px'>".

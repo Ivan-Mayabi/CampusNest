@@ -102,7 +102,7 @@ button {
   /* sidebar occupy the entire height of the screen and certain width */
   html{
   /* Variables */
-  --sidebar-width:20vw;
+  --sidebar-width:250px;
 
   /* Disable scrolling */
   overflow-x:hidden;
