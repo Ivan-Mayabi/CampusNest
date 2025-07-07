@@ -121,8 +121,6 @@ session_start();
 <div class="sidebar">
     <img src="./logo.jpg" alt="logo">
     <a href="#" class="active">MY HOMES</a>
-    <a href="#">ROOMMATES</a>
-    <a href="#">BOOKINGS</a>
     <a href="logout.php">SIGN OUT</a>
 </div>
 
