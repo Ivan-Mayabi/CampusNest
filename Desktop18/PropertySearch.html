@@ -35,36 +35,38 @@
 
     <script>
         const searchInput = document.getElementById("searchInput");
-        const resultsDiv = document.getElementById("results");
-        const searchBtn = document.getElementById("searchBtn");
+    const resultsDiv = document.getElementById("results");
+    const searchBtn = document.getElementById("searchBtn");
 
-        function searchProperties() {
-            const query = searchInput.value.trim();
-            if (query === "") {
-                resultsDiv.innerHTML = "";
-                return;
+    function searchProperties(query = "") {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "propertysearch.php", true);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                resultsDiv.innerHTML = xhr.responseText;
+            } else {
+                resultsDiv.innerHTML = "<p>Server error. Try again later.</p>";
             }
+        };
+        xhr.send("query=" + encodeURIComponent(query));
+    }
 
-            const xhr = new XMLHttpRequest();
-            xhr.open("POST", "propertysearch.php", true);
-            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    resultsDiv.innerHTML = xhr.responseText;
-                } else {
-                    resultsDiv.innerHTML = "Server Error!";
-                }
-            };
-            xhr.send("query=" + encodeURIComponent(query));
-        }
+    // ✅ Run on input
+    searchInput.addEventListener("keyup", () => {
+        searchProperties(searchInput.value.trim());
+    });
 
-        searchInput.addEventListener("keyup", searchProperties);
+    // ✅ Prevent reload and run search
+    searchBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        searchProperties(searchInput.value.trim());
+    });
 
-        // ✅ Prevent form submission reload
-        searchBtn.addEventListener("click", function(e) {
-            e.preventDefault();
-            searchProperties();
-        });
+    // ✅ Load all properties when page first loads
+    window.addEventListener("DOMContentLoaded", () => {
+        searchProperties(); // Empty string = load all
+    });
     </script>
 </body>
 </html>
