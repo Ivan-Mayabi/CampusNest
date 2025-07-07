@@ -22,7 +22,7 @@ if (isset($_POST['query'])) {
                 $imgSrc = 'images/default.jpg'; // fallback image if no photo
             }
 
-            echo '<div class="property-card">
+            echo '<a href="" style="text-decoration:none;color:inherit">'.'<div class="property-card">
                     <img src="' . $imgSrc . '" alt="Property Image" />
                     <div class="property-info">
                         <h3>' . htmlspecialchars($property['HouseName']) . '</h3>
@@ -31,7 +31,7 @@ if (isset($_POST['query'])) {
                             <li><strong>Description:</strong> ' . htmlspecialchars($property['HouseDescription']) . '</li>
                         </ul>
                     </div>
-                </div>';
+                </div>'.'</a>';
         }
     } else {
         echo "<p>No properties found matching your search.</p>";
