@@ -1,8 +1,18 @@
+<?php
+session_start();
+
+// ✅ Only allow logged-in landlords
+if (!isset($_SESSION['landlord_id'])) {
+    header("Location: login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content ="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Room - Campus Nest</title>
     <link rel="stylesheet" href="AddRoom.css">
 </head>
@@ -14,6 +24,7 @@
             <li><a href="#">ADD HOUSE</a></li>
             <li class="active"><a href="#">ADD ROOM</a></li>
             <li><a href="#">MY HOME</a></li>
+            <li><a href="logout.php">LOGOUT</a></li>
         </ul>
     </div>
 
@@ -25,8 +36,8 @@
             </div>
         </div>
 
-        <!-- ✅ Form sends data to registerRoom.php -->
-        <form method="POST" action="registerroom.php">
+        <!-- 🔗 Form submits to PHP to insert room -->
+        <form method="POST" action="registerRoom.php">
             <div class="form-group">
                 <label for="roomName">Name</label>
                 <input type="text" id="roomName" name="roomName" required>
