@@ -129,7 +129,7 @@ $result = $stmt->get_result();
         <ul>
             <li><a href="../Desktop18/PropertySearch.html">SEARCH</a></li>
             <li class="active"><a href="#">MY HOMES</a></li>
-            <li><a href="../logout.php">SIGN OUT</a></li>
+            <li><a href="../Logout/logout.php">SIGN OUT</a></li>
         </ul>
     </div>
 
