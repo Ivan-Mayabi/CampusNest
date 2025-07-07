@@ -10,24 +10,26 @@
 <div class="page-wrapper">
   <div class="sidebar">
     <div class="logo-container">
-      <img src="images/Campusnestlogo.jpg"  width="140" />
+      <img src="images/Campusnestlogo.jpg" width="140" />
     </div>
     <ul>
-      <li class="active"><a href="#">REQUESTS</a></li>
-      <li><a href="#">MY HOME</a></li>
+      <li class="#"><a href="#">REQUESTS</a></li>
+      <li><a href="active">MY HOME</a></li>
       <li><a href="logout.php">SIGN OUT</a></li>
     </ul>
   </div>
 
   <div class="container">
-      <form  class="filter-wrapper">
-    <input type="text" id="searchInput" placeholder="Filter by Location/Name" />
-           <button id="searchBtn" class="search-icon"> GO </button>
-    <div id="studentList"></div>
-          </form>
+    <h2 id="welcomeText">Welcome </h2>
+
+    <form class="filter-wrapper" onsubmit="return false;">
+      <input type="text" id="searchInput" placeholder="Filter by Location/Name" />
+      <button id="searchBtn" class="search-icon">GO</button>
+    </form>
+
+    <div id="propertyList"></div>
   </div>
 </div>
-
 
 <script src="landlorddashboard.js"></script>
 </body>
