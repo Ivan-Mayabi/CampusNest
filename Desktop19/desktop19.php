@@ -37,7 +37,7 @@ $resultSet = $pstmt->get_result();
 $number_rooms = $resultSet->fetch_assoc();
 $pstmt->close();
 
-$sql = "select roomName, roomPrice, roomAvailability, roomPhoto from room where houseId=? and roomAvailability=?";
+$sql = "select roomName, roomPrice, roomAvailability, roomPhoto,roomid from room where houseId=? and roomAvailability=?";
 $pstmt = $conn->prepare($sql);
 $available = 1;
 $pstmt->bind_param("ii",$houseId,$available);
@@ -69,7 +69,7 @@ $resultSet1 = $pstmt->get_result();
                     </p>
                     <?php
                         $base64 = base64_encode($house_details["housePhoto"]);
-                        echo "<img src='data:image/png;base64,".$base64."' width='250px' height='250px' style='padding:5px'>";
+                        echo "<img src='data:image/png;base64,".$base64."' width='200vw' height='200vh' style='padding:5px'>";
                     ?>
                 </div>
             </sidebar>
@@ -130,7 +130,7 @@ $resultSet1 = $pstmt->get_result();
                     while($row = $resultSet1->fetch_assoc()){
                         $roomBase64 = base64_encode($row["roomPhoto"]);
                         echo 
-                        "<a href=''>".
+                        "<a href='../Desktop21/RoomDetails.html?roomid=".$row["roomid"]."' style='text-decoration:none;color:inherit'>".
                         "<div id='rooms' style='margin-bottom:3vh'>".
                             "<div id='room_image' style='margin-right:30px'>".
                                 "<img src='data:image/jpeg;base64," .$roomBase64."'alt='i will put one' width='100px' height='100px'>".
