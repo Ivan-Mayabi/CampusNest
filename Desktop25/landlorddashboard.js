@@ -1,44 +1,49 @@
 document.addEventListener('DOMContentLoaded', function () {
   const searchInput = document.getElementById('searchInput');
-  const studentList = document.getElementById('studentList');
+  const propertyList = document.getElementById('propertyList');
+  const welcomeText = document.getElementById('welcomeText');
 
-  function fetchStudents(filter = '') {
-    fetch(`api.php?action=get_students&filter=${encodeURIComponent(filter)}`)
+  function fetchProperties(filter = '') {
+    fetch(`api.php?action=get_properties&filter=${encodeURIComponent(filter)}`)
       .then(response => response.json())
       .then(data => {
-        studentList.innerHTML = '';
-        if (data.length === 0) {
-          studentList.innerHTML = "<p>No matching students found.</p>";
+        if (data.error) {
+          propertyList.innerHTML = `<p class="no-results">${data.error}</p>`;
           return;
         }
 
-        data.forEach(student => {
-          const entry = document.createElement('div');
-          entry.className = 'student-entry';
-          entry.innerHTML = `
+        // Set welcome message
+        welcomeText.textContent = `Welcome Mr. ${data.landlord_name}`;
+
+        // Display properties
+        propertyList.innerHTML = '';
+        if (data.houses.length === 0) {
+          propertyList.innerHTML = `<p class="no-results">No matching houses found.</p>`;
+          return;
+        }
+
+        data.houses.forEach(house => {
+          const card = document.createElement('div');
+          card.className = 'student-entry';
+          card.innerHTML = `
             <div class="student-info">
-              <h3>${student.name}</h3>
-              <p><strong>Location:</strong> ${student.location}</p>
-              <p><strong>Room:</strong> ${student.room_number}</p>
-              <p><strong>Status:</strong> ${student.status}</p>
-            </div>
-            <div class="student-actions">
-              <button data-id="${student.id}">Student Details</button>
-              <button data-id="${student.id}">Room Details</button>
-              <button class="approve-btn" data-id="${student.id}">APPROVE</button>
-              <button class="evict-btn" data-id="${student.id}">EVICT</button>
+              <h3>${house.name}</h3>
+              <p><strong>Location:</strong> ${house.location}</p>
+              <p><strong>Description:</strong> ${house.description}</p>
             </div>
           `;
-          studentList.appendChild(entry);
+          propertyList.appendChild(card);
         });
       })
-      .catch(error => console.error('Fetch error:', error));
+      .catch(err => {
+        propertyList.innerHTML = `<p class="no-results">Error loading properties.</p>`;
+        console.error(err);
+      });
   }
 
   searchInput.addEventListener('input', () => {
-    const filterValue = searchInput.value.trim();
-    fetchStudents(filterValue);
+    fetchProperties(searchInput.value.trim());
   });
 
-  fetchStudents(); // Load all when page starts
+  fetchProperties(); // Load on page load
 });

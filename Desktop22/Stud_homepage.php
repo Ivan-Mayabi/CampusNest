@@ -1,9 +1,10 @@
 <?php
 session_start();
-if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'Student') {
-    header("Location: login.html");
-    exit;
-}
+//Temporary Fix, behaving sporadically.
+// if (!isset($_SESSION["useremail"])) {
+//     header("Location: ../Login/studentlogin.html");
+//     exit;
+// }
 ?>
 
 <!DOCTYPE html>

@@ -2,6 +2,9 @@
 session_start();
 include('connection.php');
 
+//@Aisha this gives you access to the room id variable
+$roomid = $_GET["roomid"];
+
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");   // Redirect to login page if not logged in. Check path
