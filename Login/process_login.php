@@ -19,12 +19,12 @@ if ($result->num_rows === 1) {
         echo "✅ Login successful. Welcome, " . htmlspecialchars($user["useremail"]) . "!";
         $_SESSION["useremail"]= $_POST["email"];
         print_r($user);
-        if($user["userRoleID"]==2){ //This is to go to the student
-            header("Location: ../ ");
+        if($user["userRoleId"]=="R002"){ //This is to go to the student homepage(Desktop 18)
+            header("Location: ../Desktop18/PropertySearch.html");
             exit;
         }
-        else if($user["userRoleID"]==1){ //This is to go to the landlord
-            header("Location: ../");
+        else if($user["userRoleId"]=="R001"){ //This is to go to the landlord(Desktop 25)
+            header("Location: ../Desktop25/landlorddashboard.html");
             exit;
         }
     } else {
