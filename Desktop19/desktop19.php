@@ -3,7 +3,7 @@ session_start();
 
 require "../connection.php";
 
-$houseId = 1;
+$houseId = $_GET["houseId"];
 
 $sql = "select avg(reviewRating) as average_rating from review where houseId=?";
 $pstmt = $conn->prepare($sql);

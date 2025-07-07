@@ -22,7 +22,7 @@ if (isset($_POST['query'])) {
                 $imgSrc = 'images/default.jpg'; // fallback image if no photo
             }
 
-            echo '<a href="" style="text-decoration:none;color:inherit">'.'<div class="property-card">
+            echo '<a href="../Desktop19/desktop19.php?houseId='.$property["houseid"].'" style="text-decoration:none;color:inherit">'.'<div class="property-card">
                     <img src="' . $imgSrc . '" alt="Property Image" />
                     <div class="property-info">
                         <h3>' . htmlspecialchars($property['HouseName']) . '</h3>
