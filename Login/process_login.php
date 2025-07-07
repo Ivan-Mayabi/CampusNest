@@ -1,13 +1,13 @@
 <?php
-require 'connection.php';
+require '../connection.php';
 
 // Get submitted data
-$username_or_email = $_POST['username'] ?? '';
+$email = $_POST['email'] ?? '';
 $password = $_POST['password'] ?? '';
 
 // Prepare and execute query
-$stmt = $conn->prepare("SELECT * FROM registration WHERE email = ? OR full_name = ?");
-$stmt->bind_param("ss", $username_or_email, $username_or_email);
+$stmt = $conn->prepare("SELECT userPassword FROM users WHERE useremail = ?");
+$stmt->bind_param("s", $email);
 $stmt->execute();
 $result = $stmt->get_result();
 
@@ -15,8 +15,8 @@ if ($result->num_rows === 1) {
     $user = $result->fetch_assoc();
 
     // Verify password
-    if (password_verify($password, $user['password'])) {
-        echo "✅ Login successful. Welcome, " . htmlspecialchars($user['full_name']) . "!";
+    if ($password== $user["userPassword"]) {
+        echo "✅ Login successful. Welcome, " . htmlspecialchars($user["useremail"]) . "!";
         $_SESSION["useremail"]= $_POST["email"];
     } else {
         echo "❌ Incorrect password.";
