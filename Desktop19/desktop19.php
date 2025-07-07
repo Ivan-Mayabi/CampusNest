@@ -3,7 +3,7 @@ session_start();
 
 require "../connection.php";
 
-$houseId = 1;
+$houseId = $_GET["houseId"];
 
 $sql = "select avg(reviewRating) as average_rating from review where houseId=?";
 $pstmt = $conn->prepare($sql);
@@ -37,7 +37,7 @@ $resultSet = $pstmt->get_result();
 $number_rooms = $resultSet->fetch_assoc();
 $pstmt->close();
 
-$sql = "select roomName, roomPrice, roomAvailability, roomPhoto from room where houseId=? and roomAvailability=?";
+$sql = "select roomName, roomPrice, roomAvailability, roomPhoto,roomid from room where houseId=? and roomAvailability=?";
 $pstmt = $conn->prepare($sql);
 $available = 1;
 $pstmt->bind_param("ii",$houseId,$available);
@@ -50,11 +50,11 @@ $resultSet1 = $pstmt->get_result();
 
 <html>
     <head>
-        <title>Desktop 29</title>
+        <title>Desktop 19</title>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div id="sidebar_div">
+        <div id="sidebar_div" style="position:fixed;top:0px;left:0px;width:250px">
             <!-- This is the sidebar -->
              <sidebar>
                 <div id="first_div_sidebar">
@@ -69,14 +69,14 @@ $resultSet1 = $pstmt->get_result();
                     </p>
                     <?php
                         $base64 = base64_encode($house_details["housePhoto"]);
-                        echo "<img src='data:image/png;base64,".$base64."' width='250px' height='250px' style='padding:5px'>";
+                        echo "<img src='data:image/png;base64,".$base64."' width='200vw' height='200vh' style='padding:5px'>";
                     ?>
                 </div>
             </sidebar>
         </div>
         <!-- This is the second part, that has the form -->
          
-        <div id="main_div">
+        <div id="main_div" style="position:fixed;top:0px;left:250px">
             <div id="form_div">
                 <!-- Division for the back link -->
                 <!-- <div>
@@ -130,7 +130,7 @@ $resultSet1 = $pstmt->get_result();
                     while($row = $resultSet1->fetch_assoc()){
                         $roomBase64 = base64_encode($row["roomPhoto"]);
                         echo 
-                        "<a href=''>".
+                        "<a href='../Desktop21/RoomDetails.php?roomid=".$row["roomid"]."' style='text-decoration:none;color:inherit'>".
                         "<div id='rooms' style='margin-bottom:3vh'>".
                             "<div id='room_image' style='margin-right:30px'>".
                                 "<img src='data:image/jpeg;base64," .$roomBase64."'alt='i will put one' width='100px' height='100px'>".
@@ -153,7 +153,9 @@ $resultSet1 = $pstmt->get_result();
 
            <!-- Division for the reviews -->
             <div>
-                <a href="../review_deskptop20/review.php">Leave review</a>
+                <?php
+                    echo '<a style="color:inherit;text-decoration:none" href="../Desktop20/review.php?houseid='.$houseId.'">Leave review</a>'
+                ?>
             </div>
 
         </div>

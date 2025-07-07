@@ -1,27 +1,10 @@
 <?php
 session_start();
-if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'Student') {
-    header("Location: studentlogin.html");
-    exit;
-}
-
-// Database connection
-$conn = new mysqli("localhost", "root", "A1l2b3e4r5t6_", "db_webappdev_student_accomodation");
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Hardcoded student ID for now
-$studentID = 1;
-
-// Fetch booked rooms for the student
-$sql = "SELECT h.HouseName, h.HouseDescription, r.RoomAvailability, rr.RoomStatus
-        FROM house h
-        JOIN room r ON h.houseid = r.HouseId
-        JOIN roomregistration rr ON rr.RoomId = r.roomid
-        WHERE rr.StudentID = $studentID";
-
-$result = $conn->query($sql);
+//Temporary Fix, behaving sporadically.
+// if (!isset($_SESSION["useremail"])) {
+//     header("Location: ../Login/studentlogin.html");
+//     exit;
+// }
 ?>
 
 <!DOCTYPE html>
