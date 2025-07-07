@@ -1,4 +1,5 @@
 <?php
+session_start();  // Add this to maintain session
 require_once "../connection.php"; // adjust path if needed
 
 if (isset($_POST['query'])) {
