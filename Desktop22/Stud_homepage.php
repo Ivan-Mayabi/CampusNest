@@ -1,9 +1,27 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'Student') {
-    header("Location: login.html");
+    header("Location: studentlogin.html");
     exit;
 }
+
+// Database connection
+$conn = new mysqli("localhost", "root", "A1l2b3e4r5t6_", "db_webappdev_student_accomodation");
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Hardcoded student ID for now
+$studentID = 1;
+
+// Fetch booked rooms for the student
+$sql = "SELECT h.HouseName, h.HouseDescription, r.RoomAvailability, rr.RoomStatus
+        FROM house h
+        JOIN room r ON h.houseid = r.HouseId
+        JOIN roomregistration rr ON rr.RoomId = r.roomid
+        WHERE rr.StudentID = $studentID";
+
+$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -20,11 +38,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'Student') {
       background-color: #fff0f3;
     }
 
-    a{
-      text-decoration:none;
-    }
-    a:hover{
-      transform:translate(0,-10);
+    a {
+      text-decoration: none;
     }
 
     .sidebar {
@@ -120,40 +135,35 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'Student') {
 </head>
 <body>
 
-  <div class="sidebar">
+<div class="sidebar">
     <img src="./logo.jpg" alt="logo">
     <a href="#" class="active">MY HOMES</a>
     <a href="#">ROOMMATES</a>
     <a href="#">BOOKINGS</a>
     <a href="logout.php">SIGN OUT</a>
-  </div>
+</div>
 
-  <div class="main-content">
+<div class="main-content">
     <h2>My Homes</h2>
 
-    <a href="Desktop19/desktop19.php"><div class="property-card">
-      <img src="./Room1.jpg" alt="Home Image">
-      <div class="property-info">
-        <h4>Booked House 1</h4>
-        <p>Located next to cafeteria, 10 min walk to class</p>
-      </div>
-      <div class="property-status status-approved">
-        Approved
-      </div>
-    </div></a>
+    <?php if ($result->num_rows > 0): ?>
+        <?php while ($row = $result->fetch_assoc()): ?>
+            <div class="property-card">
+                <img src="./Room1.jpg" alt="Home Image">
+                <div class="property-info">
+                    <h4><?php echo htmlspecialchars($row['HouseName']); ?></h4>
+                    <p>Description: <?php echo htmlspecialchars($row['HouseDescription']); ?></p>
+                </div>
+                <div class="property-status <?php echo $row['RoomStatus'] === 'Approved' ? 'status-approved' : 'status-pending'; ?>">
+                    <?php echo htmlspecialchars($row['RoomStatus']); ?>
+                </div>
+            </div>
+        <?php endwhile; ?>
+    <?php else: ?>
+        <p>No homes booked yet.</p>
+    <?php endif; ?>
 
-    <div class="property-card">
-      <img src="./Room2.jpg" alt="Home Image">
-      <div class="property-info">
-        <h4>Booked House 2</h4>
-        <p>Spacious room with balcony view</p>
-      </div>
-      <div class="property-status status-pending">
-        Pending Approval
-      </div>
-    </div>
-
-  </div>
+</div>
 
 </body>
 </html>
