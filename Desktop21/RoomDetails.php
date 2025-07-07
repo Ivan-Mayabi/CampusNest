@@ -1,48 +1,82 @@
 <?php
+session_start();
 include('connection.php');
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    header("Location: login.php");   // Redirect to login page if not logged in. Check path
     exit;
 }
 
-$landlordID = $_SESSION['user_id'];
+$userID = $_SESSION['user_id'];
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $roomName = mysqli_real_escape_string($conn, $_POST['name']);
-    $roomPrice = intval($_POST['price']);
-    $description = mysqli_real_escape_string($conn, $_POST['description']);
-    $houseID = isset($_POST['houseid']) ? intval($_POST['houseid']) : 1; // default is 1
+// Ensure roomid is passed
+if (!isset($_GET['roomid'])) {
+    die("No room ID specified.");
+}
 
-    if ($roomPrice <= 0) {
-        echo "<script>alert('Price must be a positive number!'); window.history.back();</script>";
+$roomID = intval($_GET['roomid']);
+
+// Handling booking POST
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['book'])) {
+    $update = mysqli_query($conn, "UPDATE room SET RoomAvailability = 0 WHERE roomid = $roomID AND RoomAvailability = 1");
+
+    if ($update && mysqli_affected_rows($conn) > 0) {
+        echo "<script>alert('Room booked successfully'); window.location.href='MyHome.php';</script>"; // Redirect to MyHome page after booking. Put right path
         exit;
-    }
-
-    if (empty($roomName)) {
-        echo "<script>alert('Room name cannot be empty.'); window.history.back();</script>";
-        exit;
-    }
-
-    // handle photo upload
-    $photo = null;
-    if (isset($_FILES['photo']) && $_FILES['photo']['error'] === 0) {
-        $photo = addslashes(file_get_contents($_FILES['photo']['tmp_name']));
-    }
-
-    $roomAvailability = 1;
-
-    $sql = "INSERT INTO room (RoomName, RoomPrice, RoomAvailability, HouseID, roomPhoto)
-            VALUES ('$roomName', $roomPrice, $roomAvailability, $houseID, " . 
-            ($photo ? "'$photo'" : "NULL") . ")";
-
-    if (mysqli_query($conn, $sql)) {
-        echo "<script>alert('Room added successfully!'); window.location.href='RoomDetails.html';</script>";
     } else {
-        echo "<script>alert('Error: " . mysqli_error($conn) . "'); window.history.back();</script>";
+        echo "<script>alert('Room is already booked); window.history.back();</script>";
+        exit;
     }
+}
 
-    mysqli_close($conn);
+// Fetch room details
+$result = mysqli_query($conn, "SELECT * FROM room WHERE roomid = $roomID");
+$room = mysqli_fetch_assoc($result);
+
+if (!$room) {
+    die("Room not found.");
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Details</title>
+    <link rel="stylesheet" href="Desktop21/RoomDetails.css"> <!-- Ensure correct path -->
+</head>
+
+<body>
+    <div class ="container">
+        <div class="sidebar">
+          <h2>ROOM DETAILS</h2>
+        </div>
+
+        <div class ="main-content">
+            <div class = "back-button">
+                <a href = "______"> <!-- Replace with correct path to MyHome page -->
+                    <div class="box">  
+                        <div class="icon">
+                            <img src="Desktop21/left-arrow.png" alt="Back">
+                        </div>
+                    </div>
+                </a>   
+            </div>
+
+            <div class= "room-details">
+                <h3><?php echo htmlspecialchars($room['RoomName']); ?></h3>
+                <p><strong>Price:</strong> <?php echo htmlspecialchars($room['roomprice']); ?></p>
+                <p><strong>Description:</strong> <?php echo nl2br(htmlspecialchars($room['RoomAvailability'] ? "Avaialble" : "Booked")); ?></p>
+
+                <?php if (!empty($room['roomPhoto'])): ?>
+                    <img src= "data:image/jpeg;base64,<?php echo base64_encode($room['roomPhoto']); ?>" alt="Room Photo" style="max-width: 100%;">
+                <?php endif; ?> 
+            </div>
+            
+        </div>  
+    </div>
+
+</body>    
+</html>
