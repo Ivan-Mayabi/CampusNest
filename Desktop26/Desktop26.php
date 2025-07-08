@@ -13,6 +13,7 @@ if ($conn->connect_error) {
 }
 
 // Hardcoded landlord ID
+// Change the hardcoded landlord ID to be dynamic now
 $landlordID = 3;
 
 // Fetch total properties
@@ -26,7 +27,7 @@ $vacantResult = $conn->query($sqlVacant);
 $totalVacant = $vacantResult->fetch_assoc()['vacant'] ?? 0;
 
 // Fetch house list
-$sqlHouses = "SELECT houseid, HouseName, HouseDescription FROM house WHERE LandLordID = $landlordID";
+$sqlHouses = "SELECT houseid, HouseName, HouseDescription,housePhoto FROM house WHERE LandLordID = $landlordID";
 $housesResult = $conn->query($sqlHouses);
 ?>
 
@@ -82,9 +83,14 @@ $housesResult = $conn->query($sqlHouses);
 
     <button class="add-home-btn">Add Homes</button>
 
-    <?php while ($house = $housesResult->fetch_assoc()): ?>
+    <?php 
+    while ($house = $housesResult->fetch_assoc()):
+      //Get the exact photo
+      $housePhoto = base64_encode($house["housePhoto"]) ?>
       <div class="home-card">
-        <img src="./House1.jpg" alt="House Image">
+        <img src=<?php 
+          echo "'data:image/png;base64,".$housePhoto."'"
+        ?> alt="House Image">
         <div class="home-info">
           <h4><?php echo htmlspecialchars($house['HouseName']); ?></h4>
           <p>Description: <?php echo htmlspecialchars($house['HouseDescription']); ?></p>
