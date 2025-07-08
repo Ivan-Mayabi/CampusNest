@@ -61,10 +61,10 @@ $housesResult = $conn->query($sqlHouses);
 <body>
 
   <div class="sidebar">
-    <img src="./logo.jpg" alt="Logo">
-    <a href="#">REQUESTS</a>
+    <img src="../Desktop25/images/Campusnestlogo.jpg" alt="Logo">
+    <a href="../Desktop25/landlorddashboard.html">REQUESTS</a>
     <a href="#" class="active">MY HOME</a>
-    <a href="logout.php">SIGN OUT</a>
+    <a href="../Logout/logout.php">SIGN OUT</a>
   </div>
 
   <div class="main-content">
