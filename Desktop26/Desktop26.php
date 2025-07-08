@@ -96,8 +96,8 @@ $housesResult = $conn->query($sqlHouses);
           <p>Description: <?php echo htmlspecialchars($house['HouseDescription']); ?></p>
         </div>
         <div class="home-actions">
-          <button>Edit</button>
-          <button>Add Rooms</button>
+          <a href="../Desktop27/EditHouse.php?houseid=<?php echo $house['houseid']; ?>"><button>Edit</button></a>
+          <a href="../Desktop28/addroom.php?houseid=<?php echo $house['houseid']; ?>"><button>Add Rooms</button></a>
         </div>
       </div>
     <?php endwhile; ?>
