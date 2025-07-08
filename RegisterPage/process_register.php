@@ -5,7 +5,7 @@ require '../connection.php';
 $first_name = $_POST['first_name'] ?? '';
 $last_name = $_POST['last_name'] ?? '';
 $phone = $_POST['phone'] ?? '';
-$email = $_POST['email'] ?? '';
+$email = strtolower($_POST['email'] ?? '');
 $password = $_POST['password'] ?? '';
 $user_role = $_POST['user_role'] ?? 'R002';  // Default to Student role
 
