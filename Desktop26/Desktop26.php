@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 
 // Hardcoded landlord ID
 // Change the hardcoded landlord ID to be dynamic now
-$landlordID = 3;
+$landlordID = $_SESSION["user_id"];
 
 // Fetch total properties
 $sqlTotal = "SELECT COUNT(*) AS total FROM house WHERE LandLordID = $landlordID";
