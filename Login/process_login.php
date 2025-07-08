@@ -24,6 +24,7 @@ if ($result->num_rows === 1) {
         $_SESSION["user_id"] = $user["userID"];
         $_SESSION["user_role"] = $user["userRoleId"];
         $_SESSION["user_email"] = $user["userEmail"];
+        $_SESSION["user_name"] = $user["userFname"]
 
         // Redirect based on role
         if ($user["userRoleId"] == "R002") { 
