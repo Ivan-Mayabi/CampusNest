@@ -16,7 +16,8 @@ if ($result->num_rows === 1) {
     $user = $result->fetch_assoc();
 
     // Verify password
-    if (password_verify($password, $user["userPassword"])) {
+    // Remove the hashing, to allow quick debugging
+    if ($password==$user["userPassword"]) {
         echo "✅ Login successful. Welcome, " . htmlspecialchars($user["userEmail"]) . "!";
 
         // Save to session
