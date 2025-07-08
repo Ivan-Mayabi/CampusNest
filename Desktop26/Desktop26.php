@@ -1,12 +1,13 @@
 <?php
+require "../connection.php";
+
 session_start();
-if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'Landlord') {
-    header("Location: login.html");
+if (!isset($_SESSION['user_email'])|| $_SESSION['user_role'] !== 'R001') {
+    header("Location: ../Login/studentlogin.html");
     exit;
 }
 
 // Database connection
-$conn = new mysqli("localhost", "root", "A1l2b3e4r5t6_", "db_webappdev_student_accomodation");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
