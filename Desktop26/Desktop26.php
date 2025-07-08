@@ -81,7 +81,7 @@ $housesResult = $conn->query($sqlHouses);
       </div>
     </div>
 
-    <button class="add-home-btn">Add Homes</button>
+    <a href="../Desktop29/desktop29.php"><button class="add-home-btn">Add Homes</button></a>
 
     <?php 
     while ($house = $housesResult->fetch_assoc()):

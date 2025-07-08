@@ -2,11 +2,15 @@
 session_start();
 
 // ✅ Only allow logged-in landlords
-if (!isset($_SESSION['landlord_id'])) {
-    header("Location: login.php");
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../Login/studentlogin.html");
     exit();
 }
+
+$houseid = $_GET["houseid"];
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,15 +24,14 @@ if (!isset($_SESSION['landlord_id'])) {
 <div class="page-wrapper">
     <div class="sidebar">
         <ul>
-            <li><a href="#">EDIT HOUSE</a></li>
-            <li><a href="#">ADD HOUSE</a></li>
-            <li class="active"><a href="#">ADD ROOM</a></li>
-            <li><a href="#">MY HOME</a></li>
-            <li><a href="logout.php">LOGOUT</a></li>
+            <li><a href="../Desktop27/EditHouse.php?houseid=<?php echo $houseid; ?>">EDIT HOUSE</a></li>
+            <li class="active"><a href="">ADD ROOM</a></li>
+            <li><a href="../Desktop26/Desktop26.php">MY HOME</a></li>
+            <li><a href="../Logout/logout.php">LOGOUT</a></li>
         </ul>
     </div>
 
-    <div class="container">
+    <div class="container"> 
         <div class="form-header">
             <h1>ADD ROOM</h1>
             <div class="logo-placeholder">

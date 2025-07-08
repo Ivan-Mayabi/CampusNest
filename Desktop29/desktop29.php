@@ -9,10 +9,8 @@
         <div id="sidebar_div">
             <!-- This is the sidebar -->
              <sidebar>
-                <button>Edit House</button>
-                <button>Add House</button>
-                <button>Add Room</button>
-                <button>My Home</button>
+                <a><button>Add House</button></a>
+                <a href="../Desktop26/Desktop26.php"><button>My Home</button></a>
             </sidebar>
         </div>
         <!-- This is the second part, that has the form -->

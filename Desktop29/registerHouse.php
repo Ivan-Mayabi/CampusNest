@@ -2,8 +2,8 @@
 require "../connection.php";
 session_start();
 
-$landlordId = $_SESSION["landlordId"];
-// $landlordId = 3;
+$landlordId = $_SESSION["user_id"];
+
 $houseName = $_POST["Name"];
 $houseLocation =$_POST["Location"];
 $houseDescription=$_POST["Description"];
