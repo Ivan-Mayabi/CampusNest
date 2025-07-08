@@ -9,12 +9,14 @@ $email = $_POST['email'] ?? '';
 $password = $_POST['password'] ?? '';
 $user_role = $_POST['user_role'] ?? 'R002';  // Default to Student role
 
-// Hash the password (optional - depending if you want hashed passwords)
-$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+// // Hash the password (optional - depending if you want hashed passwords)
+// $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+//Remove hashed passwords, easier than changing databases to allow sign ups
 
 // Prepare the insert statement
 $stmt = $conn->prepare("INSERT INTO users (userFname, userLname, userPhone, userEmail, userPassword, userRoleId) VALUES (?, ?, ?, ?, ?, ?)");
-$stmt->bind_param("ssssss", $first_name, $last_name, $phone, $email, $hashed_password, $user_role);
+$stmt->bind_param("ssssss", $first_name, $last_name, $phone, $email, $password, $user_role);
 
 // Execute the query
 if ($stmt->execute()) {
