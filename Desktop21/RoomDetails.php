@@ -1,14 +1,14 @@
 <?php
 session_start();
-include('connection.php');
+include('../connection.php');
 
 // Check if user is logged in
-if (!isset($_SESSION['useremail'])) {
-    header("Location: ../Desktop19/desktop19.php");
+if (!isset($_SESSION['user_email'])) {
+    header("Location: ../Login/studentlogin.html");
     exit;
 }
 
-$userEmail = $_SESSION['useremail'];
+$userEmail = $_SESSION['user_email'];
 
 // Check if roomid is passed
 if (!isset($_GET['roomid'])) {
@@ -67,7 +67,7 @@ if (!$room) {
 
             <div class= "room-details">
                 <h3><?php echo htmlspecialchars($room['RoomName']); ?></h3>
-                <p><strong>Price:</strong> <?php echo htmlspecialchars($room['roomprice']); ?></p>
+                <p><strong>Price:</strong> <?php echo htmlspecialchars($room['RoomPrice']); ?></p>
                 <p><strong>Description:</strong> <?php echo nl2br(htmlspecialchars($room['RoomAvailability'] ? "Available" : "Booked")); ?></p>
 
                 <?php if (!empty($room['roomPhoto'])): ?>
