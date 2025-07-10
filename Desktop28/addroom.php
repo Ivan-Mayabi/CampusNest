@@ -3,7 +3,7 @@ session_start();
 
 // ✅ Only allow logged-in landlords
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../Login/studentlogin.html");
+    header("Location: ../Login/Login.html");
     exit();
 }
 
@@ -34,13 +34,16 @@ $houseid = $_GET["houseid"];
     <div class="container"> 
         <div class="form-header">
             <h1>ADD ROOM</h1>
-            <div class="logo-placeholder">
-                <img src="images/Campusnestlogo.jpg" width="140">
-            </div>
         </div>
 
         <!-- 🔗 Form submits to PHP to insert room -->
-        <form method="POST" action="registerRoom.php">
+        <form method="POST" enctype="multipart/form-data" action="registerRoom.php?houseid=<?php echo $houseid;?>">
+            <div class="logo-placeholder" style="position:fixed;top:10px;right:15vw;">
+                <img id="file_preview" src="images/Campusnestlogo.jpg" width="140">
+                <input type="file" id="file_chosen" name="roomPhoto" accept=".png" style="margin-top:9px;border:none;background-color:fff8e7" required>
+                <script src="desktop28.js"></script>
+                <small><i>.png only</i></small>
+            </div>
             <div class="form-group">
                 <label for="roomName">Name</label>
                 <input type="text" id="roomName" name="roomName" required>
@@ -54,7 +57,7 @@ $houseid = $_GET["houseid"];
                 <select id="availability" name="availability" required>
                     <option value="">Select availability</option>
                     <option value="available">Available</option>
-                    <option value="vacant">Vacant</option>
+                    <option value="unavailable">Unavailable</option>
                 </select>
             </div>
             <button type="submit">ADD ROOM</button>

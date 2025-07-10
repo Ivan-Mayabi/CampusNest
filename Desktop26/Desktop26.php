@@ -3,7 +3,7 @@ require "../connection.php";
 
 session_start();
 if (!isset($_SESSION['user_email']) || $_SESSION['user_role'] !== 'R001') {
-    header("Location: ../Login/studentlogin.html");
+    header("Location: ../Login/Login.html");
     exit;
 }
 
@@ -77,7 +77,7 @@ $housesResult = $stmtHouses->get_result();
 <div class="page-wrapper">
   <div class="sidebar">
     <div class="logo-container">
-      <img src="../Desktop25/images/Campusnestlogo.jpg" alt="Logo">
+      <img src="../Desktop25/images/Campusnestlogo.jpg" alt="Logo" width="140">
     </div>
     <ul>
       <li><a href="../Desktop25/landlorddashboard.html">REQUESTS</a></li>

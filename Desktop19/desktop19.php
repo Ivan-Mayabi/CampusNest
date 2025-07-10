@@ -54,9 +54,10 @@ $resultSet1 = $pstmt->get_result();
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div id="sidebar_div" style="position:fixed;top:0px;left:0px;width:250px">
+        <div id="sidebar_div">
             <!-- This is the sidebar -->
              <sidebar>
+                <div id="fixing_things" style="background-color:#c0395f;position:fixed;top:0px;left:0px;width:250px;height:100vh;">
                 <div id="first_div_sidebar">
                     <label>House Details</label>
                     <p >Aggregate Review</p>
@@ -72,11 +73,12 @@ $resultSet1 = $pstmt->get_result();
                         echo "<img src='data:image/png;base64,".$base64."' width='200vw' height='200vh' style='padding:5px'>";
                     ?>
                 </div>
+            </div>
             </sidebar>
         </div>
         <!-- This is the second part, that has the form -->
          
-        <div id="main_div" style="position:fixed;top:0px;left:250px">
+        <div id="main_div" style="top:0px;left:250px">
             <div id="form_div">
                 <!-- Division for the back link -->
                 <!-- <div>

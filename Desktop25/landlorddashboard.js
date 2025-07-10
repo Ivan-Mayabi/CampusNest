@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const welcomeText = document.getElementById('welcomeText');
 
   function fetchStudents(filter = '') {
-    fetch(`api.php?action=get_students&filter=${encodeURIComponent(filter)}`)
+    fetch(`landlorddashboard.php?action=get_students&filter=${encodeURIComponent(filter)}`)
       .then(response => response.json())
       .then(data => {
         if (data.error) {
