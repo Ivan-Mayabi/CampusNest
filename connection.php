@@ -2,7 +2,7 @@
 $host = "localhost";
 $port = "3310";
 $user = "root";
-$password = "root";
+$password = "Manvin";
 $dbname = "db_webAppDev_student_Accomodation";
 
 $conn = new mysqli($host, $user, $password, $dbname, $port);
