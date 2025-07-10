@@ -3,7 +3,7 @@ session_start();
 
 // ✅ Only allow logged-in landlords
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../Login/studentlogin.html");
+    header("Location: ../Login/Login.html");
     exit();
 }
 

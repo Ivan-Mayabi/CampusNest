@@ -4,7 +4,7 @@ require_once "../connection.php";
 
 // Check logged-in user
 if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'R002') {
-    header("Location: ../Login/studentlogin.html");
+    header("Location: ../Login/Login.html");
     exit;
 }
 

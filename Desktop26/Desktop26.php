@@ -3,7 +3,7 @@ require "../connection.php";
 
 session_start();
 if (!isset($_SESSION['user_email']) || $_SESSION['user_role'] !== 'R001') {
-    header("Location: ../Login/studentlogin.html");
+    header("Location: ../Login/Login.html");
     exit;
 }
 
