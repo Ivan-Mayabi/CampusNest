@@ -105,7 +105,7 @@ button {
   --sidebar-width:250px;
 
   /* Disable scrolling */
-  overflow-x:hidden;
+  /* overflow-x:hidden; */
   }
 
   /* Make the sidebar be a certain width, colour and occupy full height */

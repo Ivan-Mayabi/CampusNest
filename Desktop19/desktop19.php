@@ -54,7 +54,7 @@ $resultSet1 = $pstmt->get_result();
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div id="sidebar_div" style="position:fixed;top:0px;left:0px;width:250px">
+        <div id="sidebar_div" style="">
             <!-- This is the sidebar -->
              <sidebar>
                 <div id="first_div_sidebar">
@@ -76,7 +76,7 @@ $resultSet1 = $pstmt->get_result();
         </div>
         <!-- This is the second part, that has the form -->
          
-        <div id="main_div" style="position:fixed;top:0px;left:250px">
+        <div id="main_div" style="top:0px;left:250px">
             <div id="form_div">
                 <!-- Division for the back link -->
                 <!-- <div>
