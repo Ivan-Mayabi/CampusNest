@@ -21,19 +21,19 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll(".approve-btn").forEach(btn => {
       btn.addEventListener("click", function () {
         const id = this.dataset.id;
-        updateStudentStatus(id, "approve");
+        updateStudentStatus(studentId,roomId, "approve");
       });
     });
 
     document.querySelectorAll(".evict-btn").forEach(btn => {
       btn.addEventListener("click", function () {
         const id = this.dataset.id;
-        updateStudentStatus(id, "evict");
+        updateStudentStatus(studentId,roomId, "evict");
       });
     });
   }
 
-  function updateStudentStatus(id, action) {
+  function updateStudentStatus(studentId,roomId, action) {
   const filename = action ==="approve" ? "approve.php" : "evict.php";
     const xhr = new XMLHttpRequest();
     xhr.open("POST", filename, true);
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
       alert(xhr.responseText);
       fetchStudents(searchInput.value.trim());
     };
-    xhr.send("id=" + encodeURIComponent(id));
+    xhr.send(`id = ${encodeURIComponent(studentId)} room_id=${encodeURIComponent(roomId)}`);
   }
 
   searchInput.addEventListener("keyup", () => {
