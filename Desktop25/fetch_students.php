@@ -55,8 +55,8 @@ while ($row = $result->fetch_assoc()) {
             <p><strong>Status:</strong> {$row['RoomStatus']}</p>
         </div>
         <div class='student-actions'>
-            <button class='approve-btn' data-id= " <? = $row['student_id']?>" data-id= " <?=$row['roomid']?>" >APPROVE</button>
-            <button class='evict-btn' data-id="<? = $row['student_id']?"  data-id = "<? = $row['roomid']?">EVICT</button>
+            <button class='approve-btn' data-student-id='{$row['student_id']}' data-room-id='{$row['RoomName']}'>APPROVE</button>
+            <button class='evict-btn' data-student-id='{$row['student_id']}' data-room-id='{$row['RoomName']}'>EVICT</button>
         </div>
     </div>
     ";

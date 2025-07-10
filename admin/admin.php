@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['update_user'])) {
     $phone = $_POST['userPhone'] ?? '';
     $role = $_POST['userRoleId'] ?? '';
     $password = $_POST['userPassword'] ?? '';
-    $access = isset($_POST['userAccess']) ? 1 : 0;
+    $access = !empty($_POST['userAccess']) ? 1 : 0;
 
     if ($user_id && $fname && $lname && $email && $phone && $role && $password) {
         $stmt = $conn->prepare("UPDATE users SET userFname = ?, userLname = ?, userEmail = ?, userPhone = ?, userRoleId = ?, userAccess = ?, userPassword = ? WHERE userID = ?");
@@ -81,7 +81,9 @@ $result = $conn->query($query);
                         <td><input type="text" name="userRoleId" value="<?php echo htmlspecialchars($row['userRoleId']); ?>" required></td>
                         <td><input type="text" name="userPassword" value="<?php echo htmlspecialchars($row['userPassword']); ?>" required></td>
                         <td>
-                            <input type="checkbox" name="userAccess" value="1" <?php echo $row['userAccess'] ? 'checked' : ''; ?>>
+                            <!-- Hidden input to force sending a value even if checkbox is unchecked -->
+                             <input type="hidden" name="userAccess" value="0">
+                             <input type="checkbox" name="userAccess" value="1" <?php echo $row['userAccess'] ? 'checked' : ''; ?>>
                         </td>
                         <td>
                             <button type="submit" name="update_user">Update</button>
