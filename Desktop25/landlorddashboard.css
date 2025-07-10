@@ -63,8 +63,13 @@ body {
 }
 
 /* Search Bar */
-.filter-wrapper {
-  border: 3px solid #b2395b;
+.search-bar{
+margin-bottom: 20px;
+}
+
+.search-wrapper {
+  background-color: transparent; /* 'none' is invalid — use 'transparent' */
+  border: 3px solid #b2395b; /* Campus Nest border color */
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -72,9 +77,9 @@ body {
   max-width: 700px;
   height: 60px;
   overflow: hidden;
-  background-color: white;
 }
-.filter-wrapper input[type="text"] {
+
+.search-wrapper input[type="text"] {
   padding: 10px 20px;
   width: 100%;
   font-size: 20px;
@@ -83,20 +88,22 @@ body {
   color: black;
   font-family: "Segoe UI", sans-serif;
 }
-.filter-wrapper input::placeholder {
- font-family: "Segoe UI", sans-serif;
 
+.search-wrapper input::placeholder {
+  font-family: "Segoe UI", sans-serif;
 }
-.filter-wrapper button {
+
+.search-wrapper button {
   background-color: transparent;
   border: none;
   font-size: 28px;
   padding: 0 20px;
   cursor: pointer;
-  color: #b2395b;
+  color: #fef7e6;
   transition: color 0.3s;
 }
-.filter-wrapper button:hover {
+
+.search-wrapper button:hover {
   color: #e38277;
 }
 
