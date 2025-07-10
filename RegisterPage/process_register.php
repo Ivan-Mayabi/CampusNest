@@ -20,8 +20,8 @@ $stmt->bind_param("ssssss", $first_name, $last_name, $phone, $email, $password, 
 
 // Execute the query
 if ($stmt->execute()) {
-    echo "✅ Registration successful!";
-    header("Location: ../login/studentlogin.html"); // Adjust this to your correct login page
+    //echo "✅ Registration successful!";
+    header("Location: ../Login/studentlogin.html"); // Adjust this to your correct login page
     exit;
 } else {
     echo "❌ Error: " . $stmt->error;

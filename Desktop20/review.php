@@ -7,8 +7,8 @@ $successMessage = "";
 $errorMessage = "";
 
 // $student_id=$_SESSION['student_id'] ?? null ;
-$student_id=1;
-$house_id=1;
+$student_id=$_SESSION['user_id'] ?? null; // Get the student ID from the session
+$house_id=$_GET['houseid'] ?? null; // Get the house ID from the query parameters
 
 //Only insert if the form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -54,7 +54,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class ="container">
             <div class ="form-header">
                 <h1>REVIEW</h1>
-                <div class ="back">BACK</div>
                 <button type="submit" action="">BACK</button>
 
         </div>
