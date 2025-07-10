@@ -86,3 +86,20 @@ body {
     color: red;
     font-weight: bold;
 }
+/* Logo styling */
+.logo {
+    width: 120px;       /* ✅ Smaller width */
+    height: auto;
+    margin: 20px;
+    display: block;
+}
+
+/* Room details image */
+.room-details img {
+    margin-top: 20px;
+    border-radius: 8px;
+    max-width: 400px;   /* ✅ Limit image size */
+    width: 100%;        /* Responsive sizing */
+    height: auto;
+    object-fit: cover;  /* Ensures image maintains aspect ratio */
+}
