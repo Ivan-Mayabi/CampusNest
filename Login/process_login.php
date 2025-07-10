@@ -1,13 +1,12 @@
 <?php
 require '../connection.php';
-session_start(); // You forgot this, sessions won't work without it
+session_start(); // ✅ Required for session management
 
-// Get submitted data
 $email = strtolower($_POST['email'] ?? '');
 $password = $_POST['password'] ?? '';
 
-// Prepare and execute query
-$stmt = $conn->prepare("SELECT * FROM users WHERE userEmail = ?"); // ✅ Correct column name
+// Find user by email
+$stmt = $conn->prepare("SELECT * FROM users WHERE userEmail = ?");
 $stmt->bind_param("s", $email);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -15,35 +14,35 @@ $result = $stmt->get_result();
 if ($result->num_rows === 1) {
     $user = $result->fetch_assoc();
 
-    // Verify password
-    // Remove the hashing, to allow quick debugging
-    if ($password==$user["userPassword"] && $user["userAccess"]==1) {
+    // ✅ Plain password check + access check
+    if ($password === $user["userPassword"] && $user["userAccess"] == 1) {
         echo "✅ Login successful. Welcome, " . htmlspecialchars($user["userEmail"]) . "!";
 
-        // Save to session
+        // Save user info to session
         $_SESSION["user_id"] = $user["userID"];
         $_SESSION["user_role"] = $user["userRoleId"];
         $_SESSION["user_email"] = $user["userEmail"];
         $_SESSION["user_name"] = $user["userFname"];
 
-        // Redirect based on role
+        // ✅ Redirect by role
         if ($user["userRoleId"] == "R002") { 
             header("Location: ../Desktop18/PropertySearch.html");
             exit;
-        } else if ($user["userRoleId"] == "R001") { 
+        } elseif ($user["userRoleId"] == "R001") { 
             header("Location: ../Desktop25/landlorddashboard.html");
             exit;
-        }
-        if ($_SESSION['user_role'] === 'R003') {
+        } elseif ($user["userRoleId"] == "R003") {
             header("Location: ../admin/admin.php");
             exit;
+        } else {
+            echo "❌ Unknown role.";
         }
-       
+
     } else {
-        echo "❌ Incorrect password.";
+        echo "❌ Incorrect password or access denied.";
     }
 } else {
-    echo "❌ User not found or User Denied Access";
+    echo "❌ User not found.";
 }
 
 $stmt->close();
