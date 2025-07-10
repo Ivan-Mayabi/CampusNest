@@ -21,20 +21,20 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll(".approve-btn").forEach(btn => {
       btn.addEventListener("click", function () {
         const id = this.dataset.id;
-        updateStudentStatus(id, "approved");
+        updateStudentStatus(id, "approve");
       });
     });
 
     document.querySelectorAll(".evict-btn").forEach(btn => {
       btn.addEventListener("click", function () {
         const id = this.dataset.id;
-        updateStudentStatus(id, "evicted");
+        updateStudentStatus(id, "evict");
       });
     });
   }
 
   function updateStudentStatus(id, action) {
-  const filename = action ==="approved" ? "approve.php" : "evict.php";
+  const filename = action ==="approve" ? "approve.php" : "evict.php";
     const xhr = new XMLHttpRequest();
     xhr.open("POST", filename, true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
