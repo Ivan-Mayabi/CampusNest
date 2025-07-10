@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const studentList = document.getElementById('results'); // Match HTML
+  const studentList = document.getElementById('studentList'); // Match HTML
   const searchInput = document.getElementById('searchInput');
 
   function fetchStudents(filter = "") {

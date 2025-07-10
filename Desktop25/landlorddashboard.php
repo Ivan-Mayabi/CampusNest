@@ -46,6 +46,7 @@ try {
     $students = [];
     while ($row = $result->fetch_assoc()) {
         $students[] = $row;
+        print_r($students);
     }
 
     echo json_encode(['students' => $students]);

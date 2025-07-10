@@ -11,21 +11,23 @@ $landlord_id = $_SESSION['user_id'];
 $filter = $_POST['query'] ?? '';
 
 $sql = "SELECT
-            s.id AS student_id,
-            s.name AS student_name,
-            r.RoomNumber,
-            r.RoomStatus,
+            s.userid AS student_id,
+            s.userFname AS student_fname,
+            s.userLname AS student_lname,
+            r.RoomName,
+            rr.RoomStatus,
             h.HouseName
-        FROM roomregistration r
-        JOIN students s ON r.StudentID = s.id
-        JOIN house h ON r.HouseID = h.id
+        FROM roomregistration rr
+        inner join room r on r.roomid = rr.roomid
+        inner JOIN users s ON rr.StudentID = s.userid
+        inner join house h on r.houseid=h.houseid
         WHERE h.LandlordID = ?";
 
 $params = [$landlord_id];
 $types = 'i';
 
 if (!empty($filter)) {
-    $sql .= " AND (s.name LIKE ? OR r.RoomNumber LIKE ? OR h.HouseName LIKE ?)";
+    $sql .= " AND (s.name LIKE ? OR r.RoomName LIKE ? OR h.HouseName LIKE ?)";
     $filterParam = "%" . $filter . "%";
     $params[] = $filterParam;
     $params[] = $filterParam;
@@ -47,9 +49,9 @@ while ($row = $result->fetch_assoc()) {
     echo "
     <div class='student-entry'>
         <div class='student-info'>
-            <h3>{$row['student_name']}</h3>
+            <h3>{$row['student_fname']} {$row['student_lname']}</h3>
             <p><strong>House:</strong> {$row['HouseName']}</p>
-            <p><strong>Room:</strong> {$row['RoomNumber']}</p>
+            <p><strong>Room:</strong> {$row['RoomName']}</p>
             <p><strong>Status:</strong> {$row['RoomStatus']}</p>
         </div>
         <div class='student-actions'>
