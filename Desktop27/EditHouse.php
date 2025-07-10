@@ -97,9 +97,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label>Location</label>
                 <input type="text" name="location" placeholder="Enter location" value="<?php echo htmlspecialchars($house['HouseLocation']); ?>" required>
 
-                <label>Number of Rooms</label>
-                <input type="number" name="rooms" placeholder="Enter number of rooms" value="<?php echo htmlspecialchars($house['NumberOfRooms']); ?>" min="1" required>
-
                 <label>Description</label>
                 <textarea name="description" rows="6"><?php echo htmlspecialchars($house['HouseDescription']); ?></textarea>
 
