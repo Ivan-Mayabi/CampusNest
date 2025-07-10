@@ -19,18 +19,22 @@ $roomID = intval($_GET['roomid']);
 
 // Handle booking
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['book'])) {
+    // First: Set the room as unavailable (0 = not available)
     $update = mysqli_query($conn, "UPDATE room SET RoomAvailability = 0 WHERE roomid = $roomID AND RoomAvailability = 1");
-    $update1 = mysqli_query($conn, "INSERT into roomregistration(roomid,studentid) values ($roomID,$studentid)");
+
+    // Second: Insert booking with status 'Pending'
+    $update1 = mysqli_query($conn, "INSERT INTO roomregistration (roomid, studentid, RoomStatus) VALUES ($roomID, $studentid, 'Pending')");
 
     if ($update && $update1 && mysqli_affected_rows($conn) > 0) {
-        header ("Location: ../Desktop22/Stud_homepage.php");
-        echo "<script>alert('Room booked successfully');</script>";
+        // Success
+        header("Location: ../Desktop22/Stud_homepage.php");
         exit;
     } else {
-        echo "<script>alert('Room is already booked'); window.history.back();</script>";
+        echo "<script>alert('Room is already booked or booking failed'); window.history.back();</script>";
         exit;
     }
 }
+
 
 // Fetch room details
 $result = mysqli_query($conn, "SELECT * FROM room WHERE roomid = $roomID");

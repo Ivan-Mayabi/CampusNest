@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../connection.php'; // Adjust path as needed
+require_once '../connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $studentId = $_POST['id'] ?? null;
@@ -11,19 +11,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // Update the room status to "Left" for this specific student and room
-    $stmt = $conn->prepare("UPDATE roomregistration SET RoomStatus = 'Left' WHERE StudentID = ? AND RoomID = ?");
-    $stmt->bind_param("ii", $studentId, $roomId);
-
-    if ($stmt->execute()) {
-        echo "Student evicted successfully!";
-    } else {
-        echo "Error evicting student: " . $stmt->error;
+    // ✅ Step 1: Update roomregistration status to 'Left'
+    $stmt1 = $conn->prepare("UPDATE roomregistration SET RoomStatus = 'Left' WHERE StudentID = ? AND RoomID = ?");
+    $stmt1->bind_param("ii", $studentId, $roomId);
+    if (!$stmt1->execute()) {
+        echo "Error updating roomregistration: " . $stmt1->error;
+        exit;
     }
+    $stmt1->close();
 
-    $stmt->close();
+    // ✅ Step 2: Mark the room as available again
+    $stmt2 = $conn->prepare("UPDATE room SET RoomAvailability = 1 WHERE roomid = ?");
+    $stmt2->bind_param("i", $roomId);
+    if ($stmt2->execute()) {
+        echo "Student evicted and room marked as available.";
+    } else {
+        echo "Error updating room availability: " . $stmt2->error;
+    }
+    $stmt2->close();
+
     $conn->close();
-} else {
-    echo "Invalid request method.";
 }
 ?>
