@@ -20,16 +20,16 @@
   </div>
 
   <div class="container">
-    <!-- 👇 This will dynamically be filled via JS -->
-    <h2 id="welcomeText">Welcome, Mr./Mrs.    </h2>
-
-    <form class="filter-wrapper" onsubmit="return false;">
-      <input type="text" id="searchInput" placeholder="Filter by Location / Name" />
-      <button id="searchBtn" class="search-icon">GO</button>
-    </form>
+      <form id="searchForm" method="GET" action="landlorddashboard.php" class="search-bar">
+        <div class="search-wrapper">
+          <input type="text" id="searchInput" placeholder="Search student by name or room..." />
+          <button id="searchBtn" class="search-icon"> 🔍 </button>
+        </div>
+      </form>
 
     <!-- 👇 This is where student cards will appear -->
     <div id="studentList"></div>
+
   </div>
 </div>
 
