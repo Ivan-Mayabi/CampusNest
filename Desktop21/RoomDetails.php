@@ -55,15 +55,15 @@ if (!$room) {
         </div>
 
         <div class ="main-content">
-            <div class = "back-button">
-                <a href = "../Desktop19/desktop19.html">
+            <!-- <div class = "back-button">
+                <a href = "../Desktop19/desktop19.html?houseid=<?php?>">
                     <div class="box">  
                         <div class="icon">
                             <img src="back.png" alt="Back">
                         </div>
                     </div>
                 </a>   
-            </div>
+            </div> -->
 
             <div class= "room-details">
                 <h3><?php echo htmlspecialchars($room['RoomName']); ?></h3>

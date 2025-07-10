@@ -18,7 +18,7 @@ if(isset($_FILES["file_chosen"]) && ($_FILES["file_chosen"]["error"])==0){
 
     if($pstmt->execute()){
         echo "Successful send to database";
-        header("Location: ../DesktopStudentLogin/studentlogin.html");
+        header("Location: ../Desktop29/desktop29.php");
         exit;
     }
     else{
