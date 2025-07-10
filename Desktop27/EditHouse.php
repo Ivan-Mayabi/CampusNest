@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <ul>
                 <li><a href="#">EDIT HOUSE</a></li>
                 <li><a href="../Desktop28/addroom.php?houseid=<?php echo $houseID;?>">ADD ROOM</a></li>
-                <li><a href="../Desktop26/Desktop26.php">MY HOME</a></li>
+                <li><a href="../Desktop26/Desktop26.php">MY HOMES</a></li>
             </ul>
         </div>
 
