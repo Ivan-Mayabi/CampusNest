@@ -1,26 +1,28 @@
 <?php
-session_start();
-require_once '../connection.php'; // Adjust path as needed
+require_once '../connection.php'; // Adjust path if needed
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $studentId = $_POST['id'] ?? null;
 
-    if (!$studentId) {
-        echo "Invalid student ID.";
-        exit;
-    }
+    if ($studentId) {
+        //
+        $roomId = $_POST['room_id'] ?? null;
 
-    // Update the room status to "Approved"
-    $stmt = $conn->prepare("UPDATE roomregistration SET RoomStatus = 'Approved' WHERE StudentID = ? AND RoomID = ?");
-    $stmt->bind_param("ii", $studentId, $roomId);
+        if ($roomId) {
+            //  Update only the specific student-room registration
+            $stmt = $conn->prepare("UPDATE roomregistration SET RoomStatus = 'Approved' WHERE StudentID = ? AND RoomID = ?");
+            $stmt->bind_param("ii", $studentId, $roomId);
 
-    if ($stmt->execute()) {
-        echo "Student approved successfully!";
+            if ($stmt->execute()) {
+                echo "Student approved successfully for this room.";
+            } else {
+                echo "Error updating room status: " . $stmt->error;
+            }
+        } else {
+            echo "Room ID missing. Cannot approve without a specific room.";
+        }
     } else {
-        echo "Error approving student.";
+        echo "Student ID missing.";
     }
-
-    $stmt->close();
-    $conn->close();
 }
 ?>
