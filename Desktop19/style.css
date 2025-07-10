@@ -112,7 +112,14 @@ button {
   #sidebar_div{
   height:100vh;
   width:var(--sidebar-width);
-  background-color: #c0395f; /* Alter the background color */
+  }
+
+  #fixing_things{
+    position:fixed;
+    top:0px;
+    left:0px;
+    background-color:white;
+    width:250px;
   }
 
   /* Alter the alignment of the buttons in the sidebar:column wise */
