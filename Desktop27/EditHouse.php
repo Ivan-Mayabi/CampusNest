@@ -1,120 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit House</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .container {
-            display: flex;
-            height: 100vh;
-        }
-
-        .sidebar {
-            background-color: #b3395b;
-            width: 250px;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .sidebar h2 {
-            color: whitesmoke;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .sidebar ul li {
-            margin-bottom: 20px;
-        }
-
-        .sidebar ul li a {
-            text-decoration: none;
-            color: whitesmoke;
-            font-weight: bold;
-        }
-
-        .sidebar ul li a:hover {
-            color: #78053f;
-        }
-
-        .main-content {
-            flex: 1;
-            background-color: whitesmoke;
-            padding: 40px;
-            position: relative;
-        }
-
-        form {
-            margin-top: 100px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            max-width: 500px;
-        }
-
-        label {
-            font-weight: normal;
-            text-align: left;
-            color: #333;
-        }
-
-        input[type="text"],
-        input[type="number"] {
-            padding: 8px;
-            border: 1px solid #b3395b;
-            border-radius: 5px;
-            font-size: 16px;
-            width: 100%;
-        }
-
-        textarea {
-            padding: 8px;
-            border: 1px solid #b3395b;
-            border-radius: 5px;
-            font-size: 16px;
-            width: 100%;
-            resize: none;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #c0395f;
-            border: none;
-            color: white;
-            font-size: 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
-
-        button:disabled {
-            background-color: gray;
-            cursor: not-allowed;
-        }
-
-        button:hover {
-            background-color: #e7a57b;
-        }
-    </style>
-</head>
-<body>
-
 <?php
 require ('../connection.php');
 session_start();
 
+// Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../Login/Login.html");
     exit;
@@ -122,26 +10,24 @@ if (!isset($_SESSION['user_id'])) {
 
 $landlordID = $_SESSION['user_id'];
 
+// Fetch house details
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['houseid'])) {
     $houseID = intval($_GET['houseid']);
     $result = mysqli_query($conn, "SELECT * FROM house WHERE houseid = $houseID");
     $house = mysqli_fetch_assoc($result);
-
     if (!$house) {
         die("House not found");
     }
 }
 
+// Process form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $houseID = intval($_POST['houseid']);
     $houseName = mysqli_real_escape_string($conn, $_POST['name']);
     $location = mysqli_real_escape_string($conn, $_POST['location']);
     $description = mysqli_real_escape_string($conn, $_POST['description']);
 
-    $sql = "UPDATE house SET
-        HouseName = '$houseName',
-        HouseLocation = '$location',
-        HouseDescription = '$description'";
+    $sql = "UPDATE house SET HouseName = '$houseName', HouseLocation = '$location', HouseDescription = '$description'";
 
     if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
         $photo = addslashes(file_get_contents($_FILES['photo']['tmp_name']));
@@ -151,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql .= " WHERE houseid = $houseID";
 
     if (mysqli_query($conn, $sql)) {
-        echo "<script>alert('House details updated successfully'); window.location.href='../Desktop26/Desktop26.php';</script>";
+        echo "<script>alert('House updated successfully'); window.location.href='../Desktop26/Desktop26.php';</script>";
         exit;
     } else {
         echo "Error updating house: " . mysqli_error($conn);
@@ -159,31 +45,80 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<div class="container">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Edit House</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "Segoe UI", sans-serif; background-color: #fff8e7; height: 100vh; display: flex; }
+.page-wrapper { display: flex; width: 100%; }
+
+.sidebar { width: 250px; background-color: #b3395b; padding: 20px 0; min-height: 100vh; }
+.logo-container { width: 140px; height: 100px; margin: 20px auto 10px; }
+.logo-container img { width: 100%; height: 100%; object-fit: contain; }
+
+.sidebar ul { list-style: none; padding: 0; }
+.sidebar ul li { margin: 20px 0; }
+.sidebar ul li a { color: white; text-decoration: none; padding: 12px 20px; display: block; }
+.sidebar ul li.active a, .sidebar ul li a:hover { background-color: #e37c74; border-radius: 6px; }
+
+.container { flex: 1; padding: 40px; display: flex; flex-direction: column; gap: 20px; overflow-y: auto; }
+
+form { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-width: 600px; display: flex; flex-direction: column; gap: 15px; }
+
+label { color: #333; font-weight: bold; }
+input[type="text"], textarea, input[type="file"] {
+    padding: 10px;
+    border: 1px solid #b3395b;
+    border-radius: 8px;
+    font-size: 16px;
+}
+textarea { resize: none; }
+
+button {
+    padding: 12px;
+    background-color: #b3395b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+button:hover { background-color: #e37c74; }
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
     <div class="sidebar">
-        <h2>EDIT HOUSE</h2>
+        <div class="logo-container">
+            <img src="../Desktop25/images/Campusnestlogo.jpg" alt="Logo">
+        </div>
         <ul>
-            <li><a href="#">EDIT HOUSE</a></li>
-            <li><a href="../Desktop28/addroom.php?houseid=<?php echo $houseID;?>">ADD ROOM</a></li>
+            <li class="active"><a href="#">EDIT HOUSE</a></li>
+            <li><a href="../Desktop28/addroom.php?houseid=<?php echo $house['houseid']; ?>">ADD ROOM</a></li>
             <li><a href="../Desktop26/Desktop26.php">MY HOMES</a></li>
         </ul>
     </div>
 
-    <div class="main-content">
+    <div class="container">
         <form action="EditHouse.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="houseid" value="<?php echo htmlspecialchars($house['houseid']); ?>">
 
             <label>Name of House</label>
-            <input type="text" name="name" placeholder="Enter house name" value="<?php echo htmlspecialchars($house['HouseName']); ?>" required>
+            <input type="text" name="name" value="<?php echo htmlspecialchars($house['HouseName']); ?>" required>
 
             <label>Location</label>
-            <input type="text" name="location" placeholder="Enter location" value="<?php echo htmlspecialchars($house['HouseLocation']); ?>" required>
+            <input type="text" name="location" value="<?php echo htmlspecialchars($house['HouseLocation']); ?>" required>
 
             <label>Description</label>
-            <textarea name="description" rows="6" placeholder="Enter house description"><?php echo htmlspecialchars($house['HouseDescription']); ?></textarea>
+            <textarea name="description" rows="5"><?php echo htmlspecialchars($house['HouseDescription']); ?></textarea>
 
             <label>Update Photo</label>
-            <input type="file" name="photo"><br>
+            <input type="file" name="photo">
 
             <button type="submit">Update House</button>
         </form>
