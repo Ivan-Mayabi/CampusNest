@@ -9,6 +9,7 @@ if (!isset($_SESSION['user_email'])) {
 }
 
 $userEmail = $_SESSION['user_email'];
+$studentid = $_SESSION['user_id'];
 
 // Check if roomid is passed
 if (!isset($_GET['roomid'])) {
@@ -19,9 +20,11 @@ $roomID = intval($_GET['roomid']);
 // Handle booking
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['book'])) {
     $update = mysqli_query($conn, "UPDATE room SET RoomAvailability = 0 WHERE roomid = $roomID AND RoomAvailability = 1");
+    $update1 = mysqli_query($conn, "INSERT into roomregistration(roomid,studentid) values ($roomID,$studentid)");
 
-    if ($update && mysqli_affected_rows($conn) > 0) {
-        echo "<script>alert('Room booked successfully'); window.location.href='../Desktop22/Stud_homepage.php';</script>";
+    if ($update && $update1 && mysqli_affected_rows($conn) > 0) {
+        header ("Location: ../Desktop22/Stud_homepage.php");
+        echo "<script>alert('Room booked successfully');</script>";
         exit;
     } else {
         echo "<script>alert('Room is already booked'); window.history.back();</script>";
