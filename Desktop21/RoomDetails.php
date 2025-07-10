@@ -45,47 +45,35 @@ if (!$room) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Room Details</title>
     <link rel="stylesheet" href="RoomDetails.css">
-    <img src="Campusnestlogo.jpg" alt="Logo" class="logo"> 
 </head>
 
 <body>
-    <div class ="container">
+    <img src="Campusnestlogo.jpg" alt="Logo" class="logo"> 
+
+    <div class="container">
         <div class="sidebar">
-          <h2>ROOM DETAILS</h2>
+            <h2>ROOM DETAILS</h2>
         </div>
 
-        <div class ="main-content">
-            <!-- <div class = "back-button">
-                <a href = "../Desktop19/desktop19.html?houseid=<?php?>">
-                    <div class="box">  
-                        <div class="icon">
-                            <img src="back.png" alt="Back">
-                        </div>
-                    </div>
-                </a>   
-            </div> -->
-
-            <div class= "room-details">
+        <div class="main-content">
+            <div class="room-details">
                 <h3><?php echo htmlspecialchars($room['RoomName']); ?></h3>
                 <p><strong>Price:</strong> <?php echo htmlspecialchars($room['RoomPrice']); ?></p>
-                <p><strong>Description:</strong> <?php echo nl2br(htmlspecialchars($room['RoomAvailability'] ? "Available" : "Booked")); ?></p>
+                <p><strong>Status:</strong> <?php echo nl2br(htmlspecialchars($room['RoomAvailability'] ? "Available" : "Booked")); ?></p>
 
                 <?php if (!empty($room['roomPhoto'])): ?>
-                    <img src= "data:image/jpeg;base64,<?php echo base64_encode($room['roomPhoto']); ?>" 
-                        alt="Room Photo" style="max-width: 100%; height: auto;">
+                    <img src="data:image/jpeg;base64,<?php echo base64_encode($room['roomPhoto']); ?>" alt="Room Photo">
                 <?php endif; ?> 
             </div>
 
             <?php if ($room['RoomAvailability']): ?>
                 <form method="POST" class="book-form">
-                    <button type="submit" name="book">Book</button>
+                    <button type="submit" name="book" class="book-button">Book</button>
                 </form>
             <?php else: ?>
-                <p style = "color: red; font-weight:bold;">This room is already booked</p>   
+                <p style="color: red; font-weight:bold;">This room is already booked</p>   
             <?php endif; ?> 
-
         </div>  
-
     </div>
 </body>    
 </html>
