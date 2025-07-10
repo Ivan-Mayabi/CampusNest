@@ -12,10 +12,10 @@ $userId = $_SESSION['user_id'];
 
 // Get homes booked by this student
 $sql = "
-SELECT h.HouseName, h.HouseDescription, rr.RoomStatus
+SELECT h.HouseName, h.HouseDescription, rm.roomPhoto, rm.roomName, rm.roomPrice, rr.RoomStatus
 FROM house h
-JOIN room rm ON h.houseid = rm.HouseId
-JOIN roomregistration rr ON rm.roomid = rr.RoomId
+inner JOIN room rm ON h.houseid = rm.HouseId
+inner JOIN roomregistration rr ON rm.roomid = rr.RoomId
 WHERE rr.StudentID = ?
 ";
 
@@ -139,11 +139,15 @@ $result = $stmt->get_result();
         <?php if ($result->num_rows > 0): ?>
             <?php while ($row = $result->fetch_assoc()): ?>
                 <div class="property-card">
-                    <img src="../Desktop18/images/Room1.jpg" alt="Home">
+                    <?php
+                        $imgData = base64_encode($row['roomPhoto']);
+                    ?>
+                    <img src="data:image/png;base64,<?php echo $imgData;?>" alt="Home">
                     <div class="property-details">
-                        <h3><?php echo htmlspecialchars($row['HouseName']); ?></h3>
+                        <h3><?php echo htmlspecialchars($row['HouseName']).": ".htmlspecialchars($row['roomName']) ?></h3>
                         <ul>
-                            <li><strong>Description:</strong> <?php echo htmlspecialchars($row['HouseDescription']); ?></li>
+                            <li><strong>Price</strong> <?php echo htmlspecialchars($row['roomPrice']);?></li>
+                            <li><strong>Description:</strong> <?php echo htmlspecialchars($row['HouseDescription']);?></li>
                         </ul>
                     </div>
                     <div class="property-status <?php echo ($row['RoomStatus'] === 'Approved') ? 'status-approved' : 'status-pending'; ?>">
