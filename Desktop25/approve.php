@@ -11,8 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Update the room status to "Approved"
-    $stmt = $conn->prepare("UPDATE roomregistration SET RoomStatus = 'Approved' WHERE StudentID = ?");
-    $stmt->bind_param("i", $studentId);
+    $stmt = $conn->prepare("UPDATE roomregistration SET RoomStatus = 'Approved' WHERE StudentID = ? AND RoomID = ?");
+    $stmt->bind_param("ii", $studentId, $roomId);
 
     if ($stmt->execute()) {
         echo "Student approved successfully!";
