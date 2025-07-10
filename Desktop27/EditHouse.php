@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <ul>
                 <li><a href="#">EDIT HOUSE</a></li>
                 <li><a href="../Desktop28/addroom.php?houseid=<?php echo $houseID;?>">ADD ROOM</a></li>
-                <li><a href="../Desktop26/Desktop26.php">MY HOME</a></li>
+                <li><a href="../Desktop26/Desktop26.php">MY HOMES</a></li>
             </ul>
         </div>
 
@@ -96,9 +96,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <label>Location</label>
                 <input type="text" name="location" placeholder="Enter location" value="<?php echo htmlspecialchars($house['HouseLocation']); ?>" required>
-
-                <label>Number of Rooms</label>
-                <input type="number" name="rooms" placeholder="Enter number of rooms" value="<?php echo htmlspecialchars($house['NumberOfRooms']); ?>" min="1" required>
 
                 <label>Description</label>
                 <textarea name="description" rows="6"><?php echo htmlspecialchars($house['HouseDescription']); ?></textarea>

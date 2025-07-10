@@ -13,24 +13,27 @@
       <img src="images/Campusnestlogo.jpg" width="140" />
     </div>
     <ul>
-      <li class="#"><a href="#">REQUESTS</a></li>
+      <li class="active"><a href="#">REQUESTS</a></li>
       <li><a href="../Desktop26/Desktop26.php">MY HOME</a></li>
       <li><a href="../Logout/logout.php">SIGN OUT</a></li>
     </ul>
   </div>
 
   <div class="container">
-    <h2 id="welcomeText">Welcome </h2>
+    <!-- 👇 This will dynamically be filled via JS -->
+    <h2 id="welcomeText">Welcome, Mr./Mrs.    </h2>
 
     <form class="filter-wrapper" onsubmit="return false;">
-      <input type="text" id="searchInput" placeholder="Filter by Location/Name" />
+      <input type="text" id="searchInput" placeholder="Filter by Location / Name" />
       <button id="searchBtn" class="search-icon">GO</button>
     </form>
 
-    <div id="propertyList"></div>
+    <!-- 👇 This is where student cards will appear -->
+    <div id="studentList"></div>
   </div>
 </div>
 
+<!-- JS will handle dynamic loading -->
 <script src="landlorddashboard.js"></script>
 </body>
 </html>
