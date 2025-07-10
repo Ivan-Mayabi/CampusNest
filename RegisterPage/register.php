@@ -52,6 +52,7 @@ $error = $_GET['error'] ?? '';
                     <option value="">Select Role</option>
                     <option value="R002">Student</option>
                     <option value="R001">Landlord</option>
+                    <option value="R003">Admin</option>
                 </select>
             </div>
 

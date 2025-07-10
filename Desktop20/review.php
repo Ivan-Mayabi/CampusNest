@@ -54,9 +54,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class ="container">
             <div class ="form-header">
                 <h1>REVIEW</h1>
-
-
-
         </div>
 
         <form action="" method="POST" id="review">
