@@ -4,7 +4,7 @@ require_once '../connection.php'; // adjust path if needed
 
 // Make sure landlord is logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../Login/studentlogin.html");
+    header("Location: ../Login/Login.html");
     exit();
 }
 
