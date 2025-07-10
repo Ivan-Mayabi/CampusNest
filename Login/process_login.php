@@ -34,6 +34,11 @@ if ($result->num_rows === 1) {
             header("Location: ../Desktop25/landlorddashboard.html");
             exit;
         }
+        if ($_SESSION['user_role'] === 'R003') {
+            header("Location: ../admin/admin.php");
+            exit;
+        }
+       
     } else {
         echo "❌ Incorrect password.";
     }
