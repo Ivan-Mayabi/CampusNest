@@ -4,13 +4,13 @@ require_once '../connection.php'; // Adjust the path if needed
 
 header('Content-Type: application/json');
 
-if (!isset($_SESSION['landlord_id'])) {
+if (!isset($_SESSION['user_id'])) {
     echo json_encode(['error' => 'Not logged in']);
     exit;
 }
 
-$landlord_id = $_SESSION['landlord_id'];
-$landlord_name = $_SESSION['landlord_name'] ?? 'Landlord';
+$landlord_id = $_SESSION['user_id'];
+$landlord_name = $_SESSION['user_name'] ?? 'Landlord';
 
 $action = $_GET['action'] ?? '';
 

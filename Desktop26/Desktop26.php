@@ -1,18 +1,20 @@
 <?php
+require "../connection.php";
+
 session_start();
-if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'Landlord') {
-    header("Location: login.html");
+if (!isset($_SESSION['user_email'])|| $_SESSION['user_role'] !== 'R001') {
+    header("Location: ../Login/studentlogin.html");
     exit;
 }
 
 // Database connection
-$conn = new mysqli("localhost", "root", "A1l2b3e4r5t6_", "db_webappdev_student_accomodation");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
 // Hardcoded landlord ID
-$landlordID = 3;
+// Change the hardcoded landlord ID to be dynamic now
+$landlordID = $_SESSION["user_id"];
 
 // Fetch total properties
 $sqlTotal = "SELECT COUNT(*) AS total FROM house WHERE LandLordID = $landlordID";
@@ -25,7 +27,7 @@ $vacantResult = $conn->query($sqlVacant);
 $totalVacant = $vacantResult->fetch_assoc()['vacant'] ?? 0;
 
 // Fetch house list
-$sqlHouses = "SELECT houseid, HouseName, HouseDescription FROM house WHERE LandLordID = $landlordID";
+$sqlHouses = "SELECT houseid, HouseName, HouseDescription,housePhoto FROM house WHERE LandLordID = $landlordID";
 $housesResult = $conn->query($sqlHouses);
 ?>
 
@@ -60,10 +62,10 @@ $housesResult = $conn->query($sqlHouses);
 <body>
 
   <div class="sidebar">
-    <img src="./logo.jpg" alt="Logo">
-    <a href="#">REQUESTS</a>
+    <img src="../Desktop25/images/Campusnestlogo.jpg" alt="Logo">
+    <a href="../Desktop25/landlorddashboard.html">REQUESTS</a>
     <a href="#" class="active">MY HOME</a>
-    <a href="logout.php">SIGN OUT</a>
+    <a href="../Logout/logout.php">SIGN OUT</a>
   </div>
 
   <div class="main-content">
@@ -79,18 +81,23 @@ $housesResult = $conn->query($sqlHouses);
       </div>
     </div>
 
-    <button class="add-home-btn">Add Homes</button>
+    <a href="../Desktop29/desktop29.php"><button class="add-home-btn">Add Homes</button></a>
 
-    <?php while ($house = $housesResult->fetch_assoc()): ?>
+    <?php 
+    while ($house = $housesResult->fetch_assoc()):
+      //Get the exact photo
+      $housePhoto = base64_encode($house["housePhoto"]) ?>
       <div class="home-card">
-        <img src="./House1.jpg" alt="House Image">
+        <img src=<?php 
+          echo "'data:image/png;base64,".$housePhoto."'"
+        ?> alt="House Image">
         <div class="home-info">
           <h4><?php echo htmlspecialchars($house['HouseName']); ?></h4>
           <p>Description: <?php echo htmlspecialchars($house['HouseDescription']); ?></p>
         </div>
         <div class="home-actions">
-          <button>Edit</button>
-          <button>Add Rooms</button>
+          <a href="../Desktop27/EditHouse.php?houseid=<?php echo $house['houseid']; ?>"><button>Edit</button></a>
+          <a href="../Desktop28/addroom.php?houseid=<?php echo $house['houseid']; ?>"><button>Add Rooms</button></a>
         </div>
       </div>
     <?php endwhile; ?>

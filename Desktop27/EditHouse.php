@@ -1,9 +1,9 @@
 <?php
-include ('Connection.php');
-
+require ('../connection.php');
+session_start();
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: _________"); // Redirect to login page if not logged in
+    header("Location: ../Login/studentlogin.html"); // Redirect to login page if not logged in
     exit;
 }
 
@@ -71,9 +71,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <h2>EDIT HOUSE</h2>
             <ul>
                 <li><a href="#">EDIT HOUSE</a></li>
-                <li><a href="#">ADD ROOM</a></li>
-                <li><a href="#">ADD HOUSE</a></li>
-                <li><a href="#">MY HOME</a></li>
+                <li><a href="../Desktop28/addroom.php?houseid=<?php echo $houseID;?>">ADD ROOM</a></li>
+                <li><a href="../Desktop26/Desktop26.php">MY HOME</a></li>
             </ul>
         </div>
 
