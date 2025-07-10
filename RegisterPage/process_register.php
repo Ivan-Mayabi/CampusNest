@@ -20,16 +20,21 @@ if ($check_stmt->num_rows > 0) {
     header("Location:../RegisterPage/register.php?error=exists");
     exit;
 } else {
-    // Proceed with inserting the new user
-    $stmt = $conn->prepare("INSERT INTO users (userFname, userLname, userPhone, userEmail, userPassword, userRoleId) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssss", $first_name, $last_name, $phone, $email, $password, $user_role);
+    // Correct variable name here
+    if ($user_role === 'R003') {
+        $access = 1;  // Admins have access
+    } else {
+        $access = 0;  // Default no access until verified
+    }
+
+    // Now include userAccess in the insert
+    $stmt = $conn->prepare("INSERT INTO users (userFname, userLname, userPhone, userEmail, userPassword, userRoleId, userAccess) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssssi", $first_name, $last_name, $phone, $email, $password, $user_role, $access);
 
     if ($stmt->execute()) {
-        // Registration successful
         header("Location: ../Login/Login.html");
         exit;
     } else {
-        // Insertion failed
         header("Location:../RegisterPage/register.php?error=failed");
         exit;
     }

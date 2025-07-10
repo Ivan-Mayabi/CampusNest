@@ -1,6 +1,7 @@
 <?php
 require("../connection.php");
 
+// ✅ Update user
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['update_user'])) {
     $user_id = $_POST['user_id'] ?? null;
     $fname = $_POST['userFname'] ?? '';
@@ -14,15 +15,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['update_user'])) {
     if ($user_id && $fname && $lname && $email && $phone && $role && $password) {
         $stmt = $conn->prepare("UPDATE users SET userFname = ?, userLname = ?, userEmail = ?, userPhone = ?, userRoleId = ?, userAccess = ?, userPassword = ? WHERE userID = ?");
         $stmt->bind_param("sssssssi", $fname, $lname, $email, $phone, $role, $access, $password, $user_id);
+
         if ($stmt->execute()) {
-            $message = "User with ID $user_id updated successfully.";
+            $message = "✅ User with ID $user_id updated successfully.";
         } else {
-            $message = "Error updating user: " . $stmt->error;
+            $message = "❌ Error updating user: " . $stmt->error;
         }
         $stmt->close();
     }
 }
 
+// ✅ Load users
 $query = "SELECT * FROM users";
 $result = $conn->query($query);
 ?>
