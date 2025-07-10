@@ -17,7 +17,7 @@ if ($result->num_rows === 1) {
 
     // Verify password
     // Remove the hashing, to allow quick debugging
-    if ($password==$user["userPassword"]) {
+    if ($password==$user["userPassword"] && $user["userAccess"]==1) {
         echo "✅ Login successful. Welcome, " . htmlspecialchars($user["userEmail"]) . "!";
 
         // Save to session
@@ -38,7 +38,7 @@ if ($result->num_rows === 1) {
         echo "❌ Incorrect password.";
     }
 } else {
-    echo "❌ User not found.";
+    echo "❌ User not found or User Denied Access";
 }
 
 $stmt->close();
