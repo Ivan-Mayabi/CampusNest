@@ -21,7 +21,7 @@ $stmt->bind_param("ssssss", $first_name, $last_name, $phone, $email, $password, 
 // Execute the query
 if ($stmt->execute()) {
     //echo "✅ Registration successful!";
-    header("Location: ../Login/studentlogin.html"); // Adjust this to your correct login page
+    header("Location: ../Login/Login.html"); // Adjust this to your correct login page
     exit;
 } else {
     echo "❌ Error: " . $stmt->error;
