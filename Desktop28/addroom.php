@@ -26,7 +26,7 @@ $houseid = $_GET["houseid"];
         <ul>
             <li><a href="../Desktop27/EditHouse.php?houseid=<?php echo $houseid; ?>">EDIT HOUSE</a></li>
             <li class="active"><a href="">ADD ROOM</a></li>
-            <li><a href="../Desktop26/Desktop26.php">MY HOME</a></li>
+            <li><a href="../Desktop26/Desktop26.php">MY HOMES</a></li>
             <li><a href="../Logout/logout.php">LOGOUT</a></li>
         </ul>
     </div>
