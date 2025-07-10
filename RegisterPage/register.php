@@ -1,3 +1,7 @@
+<?php
+$error = $_GET['error'] ?? '';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +14,13 @@
     <div class="container">
         <h2>Registration</h2>
         <h3>Join us today!</h3>
+
+        <?php if ($error === 'exists'): ?>
+            <p style="color: red; font-weight: bold;">❌ A user with that email or phone number already exists.</p>
+        <?php elseif ($error === 'failed'): ?>
+            <p style="color: red; font-weight: bold;">❌ Registration failed. Please try again.</p>
+        <?php endif; ?>
+
         <form action="process_register.php" method="POST" id="registerForm">
             <div class="form-group">
                 <label for="first_name">First Name</label>
@@ -19,27 +30,22 @@
                 <label for="last_name">Last Name</label>
                 <input type="text" id="last_name" name="last_name" required />
             </div>
-
             <div class="form-group">
                 <label for="phone">Phone Number</label>
                 <input type="text" id="phone" name="phone" required />
             </div>
-
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" required />
             </div>
-
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required />
             </div>
-
             <div class="form-group">
                 <label for="togglePassword">Show Password</label>
                 <input type="checkbox" id="togglePassword" />
             </div>
-
             <div class="form-group">
                 <label for="user_role">Role</label>
                 <select id="user_role" name="user_role" required>
@@ -47,15 +53,8 @@
                     <option value="R002">Student</option>
                     <option value="R001">Landlord</option>
                 </select>
-            <!-- </div>
-            <div class="form-group">
-                <label for="dob">Date of Birth</label>
-                <input type="date" id="dob" name="dob" required />
             </div>
-            <div class="form-group">
-                <label for="profile_image">Upload Profile Image</label>
-                <input type="file" id="profile_image" name="profile_image" accept="image/*" required />
-            </div> -->
+
             <button type="submit" class="form-button">Register</button>
         </form>
 
