@@ -34,8 +34,9 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function updateStudentStatus(id, action) {
+  const filename = action ==="approved" ? "approve.php" : "evict.php";
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", `${action}.php`, true);
+    xhr.open("POST", filename, true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.onload = function () {
       alert(xhr.responseText);
