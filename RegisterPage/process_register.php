@@ -21,11 +21,8 @@ if ($check_stmt->num_rows > 0) {
     exit;
 } else {
     // Correct variable name here
-    if ($user_role === 'R003') {
-        $access = 1;  // Admins have access
-    } else {
-        $access = 0;  // Default no access until verified
-    }
+
+    $access = 1;  // All users have access
 
     // Now include userAccess in the insert
     $stmt = $conn->prepare("INSERT INTO users (userFname, userLname, userPhone, userEmail, userPassword, userRoleId, userAccess) VALUES (?, ?, ?, ?, ?, ?, ?)");
