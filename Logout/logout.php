@@ -1,7 +1,14 @@
 <?php
 session_start();
+
+// Destroy all session data
 session_unset();
 session_destroy();
-header("Location: ../Login/Login.html");
+
+// Prevent going back to a protected page after logout
+header("Cache-Control: no-store, no-cache, must-revalidate");
+header("Pragma: no-cache");
+
+// Redirect to login page
+header("Location: ../Login/login.html");
 exit;
-?>

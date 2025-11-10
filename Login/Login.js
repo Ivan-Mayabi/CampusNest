@@ -1,9 +1,6 @@
-
-const toggle = document.getElementById("togglePassword");
 const passwordField = document.getElementById("password");
+const togglePassword = document.getElementById("togglePassword");
 
-toggle.addEventListener("change", function () {
-    //toggle the type attribute
-    const type = passwordField.type === 'password' ? 'text' : 'password';
-    passwordField.type = type;
+togglePassword.addEventListener("change", () => {
+    passwordField.type = togglePassword.checked ? "text" : "password";
 });

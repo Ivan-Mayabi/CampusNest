@@ -1,103 +1,185 @@
+/* ===== RESET ===== */
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
-  }
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===== BODY ===== */
 body {
-  display: flex;
-  justify-content: center;
-  min-height: 100vh;
-  margin: 40px 0;
+    background: linear-gradient(135deg, #fff6ee 0%, #ffe3d8 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    color: #333;
 }
 
-
+/* ===== MAIN CONTAINER ===== */
 .container {
-  background-color: white;
-  padding: 30px 40px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  width: 360px;
-  border: 2px solid #f9d5d3;
+    background: #ffffff;
+    width: 95%;
+    max-width: 430px;
+    padding: 35px 40px;
+    border-radius: 16px;
+    box-shadow: 0px 10px 35px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 0.4s ease-in-out;
 }
 
+/* ===== FADE ANIMATION ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-.container h2{
-    font-size: 24px;
+/* ===== HEADERS ===== */
+.container h1 {
     text-align: center;
-    margin-bottom: 20px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 5px;
     color: #c0395f;
 }
-.container h3{
-    font-size: 18px;
+
+.container h2 {
     text-align: center;
-    margin-bottom: 20px;
-    color: black;
+    color: #777;
+    font-size: 0.95rem;
+    margin-bottom: 25px;
 }
-  
-  /* Form groups */
-  .form-group {
-    margin-bottom: 15px;
-  }
-  label {
+
+/* ===== FORM GROUP ===== */
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
     display: block;
-    text-align: left;
-    margin-bottom: 5px;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+/* Required star */
+.form-group label span {
+    color: #d7263d;
     font-weight: bold;
-  }
-input,
-select,textarea {  /*Added text area to this mix*/
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: small;
 }
- 
-button {
+
+/* Inputs */
+.form-group input,
+.form-group select,
+.form-group textarea {
     width: 100%;
-    padding: 10px;
-    background-color: #c0395f;
-    border: none;
-    color: white;
-    font-size: 16px;
-    border-radius: 4px;
+    padding: 12px 14px;
+    background: #fafafa;
+    border: 2px solid #e4e4e4;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: 0.25s ease-in-out;
+}
+
+/* Focus effect */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    background: #fff;
+    border-color: #c0395f;
+    box-shadow: 0 0 5px rgba(192, 57, 95, 0.25);
+}
+
+/* Checkbox */
+.form-group input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    accent-color: #c0395f;
     cursor: pointer;
-    transition: background-color 0.2s ease;
 }
-button:disabled {
-    background-color: gray;
-    cursor: not-allowed;
+
+/* Show password label inline */
+#showPasswordLabel {
+    margin-left: 5px;
+    font-weight: 400;
+    cursor: pointer;
 }
-button:not(:disabled):hover {
-    background-color: #e7a57b;
+
+/* ===== SUBMIT BUTTON ===== */
+button[type="submit"] {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, #c0395f, #e38b85);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.25s ease-in-out;
 }
-.form-group input:focus {
-  border-color: #ff99aa;
-  outline: none;
-  background-color: #fff0f3;
+
+button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 8px 25px rgba(192, 57, 95, 0.35);
 }
+
+button[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+/* ===== FOOTER TEXT ===== */
 .form-footer {
-  text-align: center;
-  margin-top: 15px;
-  font-size: 14px;
-  color: #555;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
 }
 
 .form-footer a {
-  color:#d6336c;
-  text-decoration: none;
+    color: #c0395f;
+    text-decoration: none;
+    font-weight: 600;
 }
 
 .form-footer a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
-#togglePassword{
-    background-color: #c0395f;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+
+/* ===== ALERTS ===== */
+.alert {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    animation: fadeIn 0.3s ease;
+}
+
+.alert-error {
+    background: #fdd8dd;
+    color: #b40024;
+    border-left: 4px solid #e21335;
+}
+
+.alert-success {
+    background: #d8f5db;
+    color: #146c2e;
+    border-left: 4px solid #2ecc71;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 420px) {
+    .container {
+        padding: 28px;
+    }
+    button[type="submit"] {
+        font-size: 0.95rem;
+    }
 }
