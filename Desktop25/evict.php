@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // ✅ Step 1: Update roomregistration status to 'Left'
+    //  Step 1: Update roomregistration status to 'Left'
     $stmt1 = $conn->prepare("UPDATE roomregistration SET RoomStatus = 'Left' WHERE StudentID = ? AND RoomID = ?");
     $stmt1->bind_param("ii", $studentId, $roomId);
     if (!$stmt1->execute()) {

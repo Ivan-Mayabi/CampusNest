@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['book'])) {
 }
 
 
-// Fetch room details
+// Fetch room detail
 $result = mysqli_query($conn, "SELECT * FROM room WHERE roomid = $roomID");
 $room = mysqli_fetch_assoc($result);
 

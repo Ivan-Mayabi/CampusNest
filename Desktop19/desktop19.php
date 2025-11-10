@@ -86,7 +86,7 @@ $resultSet1 = $pstmt->get_result();
                 </div> -->
 
 
-                <!-- Division for Name of House -->
+                <!-- Division for Name of Home -->
                 <div style="display:inline">
                     <label for="hse_location" style="display:inline">Location:</label>
                     <p id="hse_location" class="hse_info" style="display:inline">

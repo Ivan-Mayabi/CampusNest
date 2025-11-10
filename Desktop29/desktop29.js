@@ -16,4 +16,4 @@ file_chosen.addEventListener("change",function(){
             file_preview.src = e.target.result;
         }
     }
-});
+});//this is nice

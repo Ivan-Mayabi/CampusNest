@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 $landlord_id = $_SESSION['user_id'];
 $filter = $_POST['query'] ?? '';
 
-// ✅ Updated SQL query to also fetch roomid
+//  Updated SQL query to also fetch roomid
 $sql = "SELECT
             s.userid AS student_id,
             s.userFname AS student_fname,

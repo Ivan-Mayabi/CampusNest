@@ -11,7 +11,7 @@ file_chosen.addEventListener("change",function(){
         const reader= new FileReader();
         //Read the file as a DataURL so that it can be sent to the server
         reader.readAsDataURL(file);
-        //Once the file's content has been read, change the content of the image to be what is here
+        //Once the file's content has been read, change the content of the image to be what is heree
         reader.onload = function(e){
             file_preview.src = e.target.result;
         }

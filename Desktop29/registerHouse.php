@@ -26,6 +26,6 @@ if(isset($_FILES["file_chosen"]) && ($_FILES["file_chosen"]["error"])==0){
     }
 }
 else{
-    echo "Not quite my liege";
+    echo "Not quite my friend";
 }
 ?>

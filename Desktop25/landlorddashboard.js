@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Send the approve/evict request
+    // Send the approve/evict requests
     function updateStudentStatus(studentId, roomId, action) {
         const url = action === "approve" ? "approve.php" : "evict.php";
         const xhr = new XMLHttpRequest();

@@ -18,7 +18,7 @@
             <form method="POST" enctype="multipart/form-data" action="registerHouse.php">
                 <!-- Division for Name of House -->
                 <div>
-                    <label for="hse_name">Name of House</label>
+                    <label for="house_name">Name of House</label>
                     <input type="text" id="hse_name" name="Name">
                 </div>
 

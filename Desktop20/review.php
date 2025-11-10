@@ -138,7 +138,7 @@ if (!$result) {
 // Free result
 mysqli_free_result($result);
 
-//close the connection
+//close the connection to the database
 mysqli_close($conn);
 ?>
 

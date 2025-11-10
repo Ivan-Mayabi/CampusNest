@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_email']) || $_SESSION['user_role'] !== 'R001') {
 
 $landlordID = $_SESSION["user_id"];
 
-// Total properties
+// Total propertiess
 $sqlTotal = "SELECT COUNT(*) AS total FROM house WHERE LandLordID = ?";
 $stmtTotal = $conn->prepare($sqlTotal);
 $stmtTotal->bind_param("i", $landlordID);

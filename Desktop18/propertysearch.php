@@ -20,7 +20,7 @@ $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
     while ($property = mysqli_fetch_assoc($result)) {
 
-        // 👇 Base64 BLOB image support
+        //  Base64 BLOB image support
         $imgSrc = '';
         if (!empty($property['housePhoto'])) {
             $imgData = base64_encode($property['housePhoto']);

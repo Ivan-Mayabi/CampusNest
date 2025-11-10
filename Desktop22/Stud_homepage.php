@@ -156,7 +156,7 @@ $result = $stmt->get_result();
                 </div>
             <?php endwhile; ?>
         <?php else: ?>
-            <p>No homes booked yet.</p>
+            <p>No houses booked yet.</p>
         <?php endif; ?>
     </div>
 </div>

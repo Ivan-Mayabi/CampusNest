@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 
 $landlordID = $_SESSION['user_id'];
 
-// Fetch house details
+// Fetch house detailss
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['houseid'])) {
     $houseID = intval($_GET['houseid']);
     $result = mysqli_query($conn, "SELECT * FROM house WHERE houseid = $houseID");

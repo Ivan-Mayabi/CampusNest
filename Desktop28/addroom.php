@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// ✅ Only allow logged-in landlords
+//  Only allow logged-in landlords
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../Login/Login.html");
     exit();

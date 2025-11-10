@@ -4,7 +4,7 @@ require_once '../connection.php'; // adjust this path to your actual connection 
 
 header('Content-Type: application/json');
 
-// Ensure the landlord is logged in
+// Ensure the landlord is logged into the system
 if (!isset($_SESSION['user_id'])) {
     echo json_encode(['error' => 'Not logged in']);
     exit;
