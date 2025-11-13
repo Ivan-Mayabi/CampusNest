@@ -68,7 +68,7 @@ $email = htmlspecialchars($_GET['email'] ?? '');
 
             <div class="form-footer">
                 Forgot password? <a href="#">Click here</a><br>
-                New here? <a href="../RegisterPage/register.html">Sign Up</a>
+                New here? <a href="../RegisterPage/register.php">Sign Up</a>
             </div>
         </form>
     </div>
