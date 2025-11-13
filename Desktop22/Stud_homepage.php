@@ -153,6 +153,13 @@ $result = $stmt->get_result();
                     <div class="property-status <?php echo ($row['RoomStatus'] === 'Approved') ? 'status-approved' : 'status-pending'; ?>">
                         <?php echo htmlspecialchars($row['RoomStatus']); ?>
                     </div>
+                    <?php if($row['RoomStatus'] === 'Approved'):?>
+                        <a href="../payments/payments.php" style="text-decoration:none">
+                            <div class="property-status status-approved">
+                                Payment
+                            </div>
+                        </a>
+                    <?php endif;?>              
                 </div>
             <?php endwhile; ?>
         <?php else: ?>

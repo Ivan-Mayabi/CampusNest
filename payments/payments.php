@@ -11,7 +11,7 @@ $BUSINESS_SHORT_CODE = '174379';
 $TRANSACTION_TYPE='CustomerPayBillOnline';
 
 // The various URLs we need.
-$CALLBACK_URL = 'https://mayabi.me/callback.php';
+$CALLBACK_URL = 'https://mayabi.me/payments/callback.php';
 $AUTH_URL= 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
 $INITIATOR_URL='https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
 
@@ -113,16 +113,130 @@ if ($_SERVER['REQUEST_METHOD']==='POST'){
 }
 ?>
 
-<!DOCTYPE HTML>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Daraja API test</title>
+    <meta charset="UTF-8" />
+    <title>My Homes - Campus Nest</title>
+    <link rel="stylesheet" href="Stud_homepage.css" />
+    <style>
+        /* Base styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Segoe UI", sans-serif; background-color: #fff8e7; height: 100vh; display: flex; }
+        .page-wrapper { display: flex; width: 100%; }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #b3395b;
+            padding: 20px 0;
+            min-height: 100vh;
+        }
+        .logo-container {
+            width: 140px;
+            height: 100px;
+            margin: 20px auto;
+            background-image: url('../Desktop15/logo.png');
+            background-size: cover;
+            border-radius: 6px;
+        }
+        .sidebar ul { list-style: none; }
+        .sidebar ul li { margin: 20px 0; text-align: center; }
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            display: block;
+        }
+        .sidebar ul li.active a,
+        .sidebar ul li a:hover {
+            background-color: #e37c74;
+            border-radius: 6px;
+        }
+
+        /* Main content */
+        .container {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .container h2 {
+            color: #b3395b;
+            margin-bottom: 20px;
+        }
+
+        /* Property cards */
+        .property-card {
+            display: flex;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            align-items: space-evenly;
+            gap: 20px;
+            max-width: 350px;
+        }
+        .property-card img {
+            width: 140px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        .property-details h3 {
+            margin-bottom: 8px;
+            color: #333;
+        }
+        .property-details ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            color: #555;
+        }
+
+        /* Status badge */
+        .property-status {
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: bold;
+            color: white;
+        }
+        .status-approved { background-color: #b3395b; }
+        .status-pending { background-color: #e7a57b; }
+    </style>
 </head>
+
 <body>
-    <form method="POST" action="payments.php">
-        <Label>Phone Number</Label>
-        <input type=text name="phone_number">
-        <Label>Amount</Label>
-        <input type=number name="amount">
-        <button type=submit>Pay</button>
-    </form>
+<div class="page-wrapper">
+    <div class="sidebar">
+        <div class="logo-container"></div>
+        <ul>
+            <li><a href="../Desktop18/PropertySearch.html">SEARCH</a></li>
+            <li class="active"><a href="#">MY HOMES</a></li>
+            <li><a href="../Logout/logout.php">SIGN OUT</a></li>
+        </ul>
+    </div>
+
+    <div class="container" style="padding-top:25vh;padding-left:20vw;">
+        <form method="POST" action="payments.php" style="font-size:large">
+            <div class="property-card">
+                <Label>Phone Number</Label>
+                <br>
+                <input type=text name="phone_number">
+            </div>
+            <div class="property-card" style="margin-top:5vh;">
+                <Label>Amount</Label>
+                <br>
+                <input type=number name="amount">
+            </div>
+            <div class="property-card" style="margin-top:5vh;background-color:inherit;padding-left:8vw;">
+                <button class="property-status status-approved" type=submit>Pay</button>
+                <a class="property-status status-approved" href="../Desktop22/Stud_homepage.php" style="text-decoration:none" type=submit>Back</a>
+            </div>
+        </form>
+    </div>
 </body>

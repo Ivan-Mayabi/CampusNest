@@ -36,6 +36,8 @@ else{
 // Send response to mpesa
 header('Content-Type: application/json');
 echo json_encode($response);
+
+header("Location: Desktop22/Stud_homepage.php");
 exit;
 
 
