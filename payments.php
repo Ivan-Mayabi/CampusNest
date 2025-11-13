@@ -52,7 +52,6 @@ if ($_SERVER['REQUEST_METHOD']==='POST'){
         // Make phone number to be in the 254XXXXXXXXX format
         $phone = preg_replace('/^0/','254',$phone);
         $phone = preg_replace ('/^(\+254)/','254',$phone);
-        $phone = '254708374149';
 
         // Get the access token
         $access_token = get_access_token($AUTH_URL, $CONSUMER_KEY, $CONSUMER_SECRET);
