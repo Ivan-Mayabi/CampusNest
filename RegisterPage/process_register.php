@@ -11,13 +11,13 @@ $user_role  = $_POST['user_role'] ?? 'R002'; // Default = Student
 
 // Validate required fields
 if (empty($first_name) || empty($last_name) || empty($phone) || empty($email) || empty($password) || empty($user_role)) {
-    header("Location: ../RegisterPage/register.html?error=missing_fields");
+    header("Location: ../RegisterPage/register.php?error=missing_fields");
     exit;
 }
 
 // Validate email format
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    header("Location: ../RegisterPage/register.html?error=invalid_email");
+    header("Location: ../RegisterPage/register.php?error=invalid_email");
     exit;
 }
 
@@ -28,7 +28,7 @@ $check_stmt->execute();
 $check_stmt->store_result();
 
 if ($check_stmt->num_rows > 0) {
-    header("Location: ../RegisterPage/register.html?error=exists");
+    header("Location: ../RegisterPage/register.php?error=exists");
     exit;
 }
 
@@ -39,16 +39,6 @@ $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 // Insert new user
 $userAccess = 1;
-
-print($first_name."\n".
-$first_name."\n".
-$last_name."\n".
-$phone."\n".
-$email."\n".
-$hashedPassword."\n".
-$user_role."\n".
-$userAccess
-);
 
 $stmt = $conn->prepare("
     INSERT INTO users (
@@ -67,13 +57,11 @@ $stmt->bind_param("ssssssi",
     $userAccess
 );
 
-print("Tuko sawa");
-
 if ($stmt->execute()) {
-    header("Location: ../Login/login.php?registered=success");
+    header("Location: ../Login/Login.php?registered=success");
     exit;
 } else {
-    header("Location: ../RegisterPage/register.html?error=failed");
+    header("Location: ../RegisterPage/register.php?error=failed");
     exit;
 }
 

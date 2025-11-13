@@ -4,6 +4,7 @@
 
 // Database connection settings
 //variables to connect to the database
+    $ssl_ca_path= __DIR__."/certs/DigiCertGlobalRootG2.crt.pem";
     $db_server = "campusnest.mysql.database.azure.com";
     $db_user="campusnest";
     $db_password = "qwertyuI0p";
@@ -12,12 +13,16 @@
     $conn = "";
 
     // Create a connection to the MySQL database
-    $conn = mysqli_connect($db_server, $db_user, $db_password, $db_name,$db_port);
+    $conn = mysqli_init();
+
+    if(!mysqli_ssl_set($conn,NULL,NULL,$ssl_ca_path,NULL,NULL)){
+        die("Setting of Certificate failed".mysqli_error($conn));
+    }   
 
     // Check if the connection was successful
-    if (!$conn) {
+    if (!mysqli_real_connect($conn,$db_server, $db_user, $db_password, $db_name,$db_port)) {
         print("AAAAAAAA");
-        //  die("Connection failed: " . mysqli_connect_error());
+         die("Connection failed: " . mysqli_connect_error());
     }
     
 ?>

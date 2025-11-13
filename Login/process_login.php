@@ -4,7 +4,7 @@ require '../connection.php';
 
 // Only allow POST requests
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header("Location: login.php");
+    header("Location: Login.php");
     exit;
 }
 
@@ -14,12 +14,12 @@ $password = $_POST['password'] ?? '';
 
 // Validate inputs
 if (empty($email) || empty($password)) {
-    header("Location: login.php?error=missing_fields");
+    header("Location: Login.php?error=missing_fields");
     exit;
 }
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    header("Location: login.php?error=invalid_credentials&email=" . urlencode($email));
+    header("Location: Login.php?error=invalid_credentials&email=" . urlencode($email));
     exit;
 }
 
@@ -31,7 +31,7 @@ try {
     $result = $stmt->get_result();
 
     if ($result->num_rows !== 1) {
-        header("Location: login.php?error=user_not_found&email=" . urlencode($email));
+        header("Location: Login.php?error=user_not_found&email=" . urlencode($email));
         exit;
     }
 
@@ -39,13 +39,13 @@ try {
 
     // Check if account is active
     if ($user['userAccess'] != 1) {
-        header("Location: login.php?error=access_denied&email=" . urlencode($email));
+        header("Location: Login.php?error=access_denied&email=" . urlencode($email));
         exit;
     }
 
     // Verify password (supports hashed passwords)
     if (!password_verify($password, $user['userPassword'])) {
-        header("Location: login.php?error=invalid_credentials&email=" . urlencode($email));
+        header("Location: Login.php?error=invalid_credentials&email=" . urlencode($email));
         exit;
     }
 
@@ -76,7 +76,7 @@ try {
             break;
         default:
             session_destroy();
-            header("Location: login.php?error=invalid_role");
+            header("Location: Login.php?error=invalid_role");
             break;
     }
     exit;
