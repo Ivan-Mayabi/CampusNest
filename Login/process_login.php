@@ -83,7 +83,7 @@ try {
 
 } catch (Exception $e) {
     error_log("Login error: " . $e->getMessage());
-    header("Location: login.php?error=system_error");
+    header("Location: Login.php?error=system_error");
     exit;
 } finally {
     if (isset($stmt)) $stmt->close();

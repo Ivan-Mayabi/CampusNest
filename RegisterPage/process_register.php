@@ -38,24 +38,39 @@ $check_stmt->close();
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 // Insert new user
+$userAccess = 1;
+
+print($first_name."\n".
+$first_name."\n".
+$last_name."\n".
+$phone."\n".
+$email."\n".
+$hashedPassword."\n".
+$user_role."\n".
+$userAccess
+);
+
 $stmt = $conn->prepare("
     INSERT INTO users (
         userFname, userLname, userPhone, userEmail, 
         userPassword, userRoleId, userAccess
-    ) VALUES (?, ?, ?, ?, ?, ?, 1)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?)
 ");
 
-$stmt->bind_param("ssssss",
+$stmt->bind_param("ssssssi",
     $first_name,
     $last_name,
     $phone,
     $email,
     $hashedPassword,
-    $user_role
+    $user_role,
+    $userAccess
 );
 
+print("Tuko sawa");
+
 if ($stmt->execute()) {
-    header("Location: ../Login/login.html?registered=success");
+    header("Location: ../Login/login.php?registered=success");
     exit;
 } else {
     header("Location: ../RegisterPage/register.html?error=failed");

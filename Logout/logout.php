@@ -10,5 +10,5 @@ header("Cache-Control: no-store, no-cache, must-revalidate");
 header("Pragma: no-cache");
 
 // Redirect to login page
-header("Location: ../Login/login.html");
+header("Location: ../Login/Login.php");
 exit;
