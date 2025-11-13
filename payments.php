@@ -11,7 +11,7 @@ $BUSINESS_SHORT_CODE = '174379';
 $TRANSACTION_TYPE='CustomerPayBillOnline';
 
 // The various URLs we need.
-$CALLBACK_URL = 'https://keneth-unbeseeching-ramiro.ngrok-free.dev/callback.php';
+$CALLBACK_URL = 'https://mayabi.me/callback.php';
 $AUTH_URL= 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
 $INITIATOR_URL='https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
 
