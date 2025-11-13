@@ -5,8 +5,8 @@
 // Database connection settings
 //variables to connect to the database
     $db_server = "campusnest.mysql.database.azure.com:3306";
-    $db_user="root";
-    $db_password = "rootroot";
+    $db_user="campusnest";
+    $db_password = "qwertyuiop";
     $db_name="db_webappdev_student_accomodation";
     $conn = "";
 
