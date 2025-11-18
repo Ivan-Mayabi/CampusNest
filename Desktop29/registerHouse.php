@@ -17,7 +17,7 @@ if(isset($_FILES["file_chosen"]) && ($_FILES["file_chosen"]["error"])==0){
     $pstmt->send_long_data(4,$imgData);
 
     if($pstmt->execute()){
-        echo "Successful send to database";
+        // echo "Successful send to database";
         header("Location: ../Desktop29/desktop29.php");
         exit;
     }
