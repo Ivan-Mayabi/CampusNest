@@ -31,7 +31,7 @@ $houseid = $_GET["houseid"];
 
 
     if ($stmt->execute()) {
-        echo "✅ Room added successfully.";
+        // echo "✅ Room added successfully.";
         header("Location: ../Desktop26/Desktop26.php");
         exit;
     } else {
