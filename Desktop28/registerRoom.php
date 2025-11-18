@@ -21,7 +21,7 @@ $houseid = $_GET["houseid"];
         $roomavailability=0;
     }
     $landlordId = $_SESSION['user_id'];
-    print_r($_FILES);
+    // print_r($_FILES);
     $imgData = file_get_contents($_FILES["roomPhoto"]["tmp_name"]);
 
     // ✅ Insert room for this landlord
