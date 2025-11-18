@@ -17,6 +17,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['delete_user'])) {
     $user_id = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT);
     
     if ($user_id) {
+       
+/** @var mysqli $conn */
+
         $stmt = $conn->prepare("DELETE FROM users WHERE userID = ?");
         $stmt->bind_param("i", $user_id);
         
